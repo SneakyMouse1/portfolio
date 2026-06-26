@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import BrutalInput from "@/components/ui/Inputs/BrutalInput.vue";
 import BrutalSelect from "@/components/ui/Inputs/BrutalSelect.vue";
 import BrutalTextarea from "@/components/ui/Inputs/BrutalTextarea.vue";
@@ -15,7 +15,9 @@ const formData = ref({
 });
 
 const isSubmitting = ref(false);
-const submitStatus = ref(null); // 'success' | 'error' | null
+const submitStatus = ref(null); // null | 'success' | 'error'
+const turnstileToken = ref(null);
+let turnstileWidgetId = null;
 
 const serviceOptions = [
   "Full-Stack Web Application",
@@ -24,13 +26,30 @@ const serviceOptions = [
   "Continuous Integration / Consultation",
 ];
 
+// Turnstile can't auto-scan a Vue component — the div doesn't exist at page load.
+// Render manually and poll until the CF script is ready.
+onMounted(() => {
+  const renderTurnstile = () => {
+    if (window.turnstile) {
+      turnstileWidgetId = window.turnstile.render('#cf-turnstile-container', {
+        sitekey: '0x4AAAAAADrcANSnd95aZSy_',
+        callback: (token) => { turnstileToken.value = token; },
+        'expired-callback': () => { turnstileToken.value = null; },
+        'error-callback': () => { turnstileToken.value = null; },
+      });
+    } else {
+      setTimeout(renderTurnstile, 200);
+    }
+  };
+  renderTurnstile();
+});
+
 const handleSubmit = async () => {
   isSubmitting.value = true;
   submitStatus.value = null;
 
-  const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value;
-
-  if (!turnstileToken) {
+  if (!turnstileToken.value) {
+    console.warn('[ContactForm] Turnstile token missing — widget may not have loaded.');
     submitStatus.value = 'error';
     isSubmitting.value = false;
     return;
@@ -47,7 +66,7 @@ const handleSubmit = async () => {
         email: formData.value.email,
         serviceType: formData.value.serviceType,
         message: formData.value.message,
-        turnstileToken: turnstileToken,
+        turnstileToken: turnstileToken.value,
       }),
     });
 
@@ -60,12 +79,22 @@ const handleSubmit = async () => {
         message: "",
         acceptTerms: false,
       };
+      turnstileToken.value = null;
+      if (turnstileWidgetId !== null && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetId);
+      }
     } else {
+      const errData = await response.json().catch(() => ({}));
+      console.error('[ContactForm] Server error:', response.status, errData);
       submitStatus.value = 'error';
+      turnstileToken.value = null;
+      if (turnstileWidgetId !== null && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetId);
+      }
     }
 
   } catch (e) {
-    console.error('Contact form submission failed:', e);
+    console.error('[ContactForm] Submission failed:', e);
     submitStatus.value = 'error';
   } finally {
     isSubmitting.value = false;
@@ -167,7 +196,7 @@ const handleSubmit = async () => {
           ✕ SOMETHING WENT WRONG — PLEASE TRY AGAIN OR USE WHATSAPP/TELEGRAM.
         </div>
 
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAADrcANSnd95aZSy_"></div>
+        <div id="cf-turnstile-container"></div>
 
         <BrutalButton type="submit" :disabled="isSubmitting"
           bg-class="bg-black text-white shadow-primary w-full block text-center mt-2">
