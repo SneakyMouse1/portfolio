@@ -1,35 +1,82 @@
-@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono&family=Plus+Jakarta+Sans:wght@400;700&display=swap');
+@import "tailwindcss";
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+@theme {
+  /* Typography */
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Color palette */
+  --color-brutal-black: #000000;
+  --color-brutal-white: #FFFFFF;
+  --color-brutal-gray: #888888;
+  --color-brutal-orange: #FF6B35;
+  --color-brutal-red: #FF4A4A;
+  --color-brutal-pink: #FF8AE2;
+  --color-brutal-purple: #A55EEA;
+  --color-brutal-blue: #38B6FF;
+  --color-brutal-green: #54FA75;
+  --color-brutal-teal: #00E1D9;
+
+  /* System mapping */
+  --color-background: #FFFDF4;
+  --color-background-dark: #1F1E28;
+  --color-card: #FFFFFF;
+  --color-primary: #FFDE4D;
+  --color-primary-hover: #F4CD2A;
+  --color-border: #000000;
+
+  /* Dynamic hard shadows */
+  --shadow-sm: 2px 2px 0px 0px var(--tw-shadow-color, var(--color-brutal-black));
+  --shadow-md: 4px 4px 0px 0px var(--tw-shadow-color, var(--color-brutal-black));
+  --shadow-lg: 8px 8px 0px 0px var(--tw-shadow-color, var(--color-brutal-black));
+  --shadow-xl: 12px 12px 0px 0px var(--tw-shadow-color, var(--color-brutal-black));
+  --shadow-brutal-reverse: -4px 4px 0px 0px var(--tw-shadow-color, var(--color-brutal-black));
+
+  /* Borders */
+  --border-width-2: 2px;
+  --border-width-3: 3px;
+  --border-width-4: 4px;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+/* Base styles */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+* {
+  border-radius: 0 !important;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-brutal-black);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+}
+
+/* Custom utilities */
+@utility brutal-clickable {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-sm) !important;
   }
-}
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none !important;
   }
 }

@@ -38,3 +38,11 @@ __screenshots__/
 # Vite
 *.timestamp-*-*.mjs
 .vscode/extensions.json
+
+# Environments
+.env
+.env.local
+.env.development
+.env.production
+.env.txt
+.vercel
