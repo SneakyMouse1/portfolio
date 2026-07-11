@@ -14,9 +14,9 @@ const currentYear = computed(() => new Date().getFullYear());
         © {{ currentYear }} <a href="/" class="hover:text-brutal-orange">SMYSLOV.DEV</a>
       </span>
       <span class="hidden sm:inline-block border border-stone-300 h-4"></span>
-      <span class="font-sans text-stone-500">
+      <p class="font-sans text-stone-500 text-center md:text-left">
         All design systems configured within Neo-Brutalist parameters.
-      </span>
+      </p>
     </div>
 
     <div class="flex gap-4 font-mono text-stone-900 uppercase">
