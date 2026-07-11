@@ -14,9 +14,8 @@ import BrutalButton from "@/components/ui/BrutalButton.vue";
     </div>
 
     <p class="font-mono text-base md:text-lg max-w-2xl text-black font-medium select-none">
-      Junior Web Developer with a background in graphic design and web design — building precise, performant web
-      experiences on
-      Laravel. Based in Alicante, Spain.
+      Junior web developer with experience in graphic and web design — I create clean and high-performing web solutions.
+      I live in Alicante, Spain.
     </p>
 
     <div class="pointer-events-auto mt-2">

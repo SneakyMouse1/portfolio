@@ -117,10 +117,9 @@ const handleSubmit = async () => {
           LET'S BUILD SOMETHING TOGETHER.
         </h2>
         <p class="text-xs font-mono font-bold text-stone-700 leading-relaxed mb-6">
-          I am a junior web developer focused on building clean, well-structured web applications using Laravel and
-          Vue.js. Currently based in Alicante, Spain, I am highly motivated to join a development team, learn from
-          experienced specialists, and contribute to real-world projects. Drop me a line here or catch me via instant
-          channels.
+          I am a junior web developer focused on building clean, well-structured web applications. Currently based in
+          Alicante, Spain, I am highly motivated to join a development team, learn from experienced specialists, and
+          contribute to real-world projects. Drop me a line here or catch me via instant channels.
         </p>
 
         <!-- INSTANT CHANNELS -->
