@@ -104,7 +104,7 @@ const handleSubmit = async () => {
 
 <template>
   <section id="contact-block"
-    class="bg-white border-4 border-black shadow-md max-w-7xl mx-auto my-12 p-6 sm:p-8 flex flex-col md:flex-row justify-between items-stretch gap-8 ">
+    class="bg-white border-4 border-black shadow-md max-w-7xl mx-auto my-12 p-6 sm:p-8 flex flex-col md:flex-row justify-between items-stretch gap-8 scroll-mt-20 md:scroll-mt-40">
 
     <!-- CONTACT INFO -->
     <div class="md:w-5/12 flex flex-col justify-between gap-6">
