@@ -1,58 +1,34 @@
-import verifyAuth from '../verifyAuth.js'
+import { withAuth } from '../utils/withAuth.js'
+import { airtableFetch } from '../utils/airtable.js'
 
-export default async function handler(request, response) {
-    const user = await verifyAuth(request)
-    if (!user) {
-        return response.status(401).json({ error: 'Unauthorized' })
+/**
+ * Protected Admin Vercel Serverless Function /api/admin/schema
+ */
+export default withAuth(async function handler(request, response) {
+  const baseId = process.env.AIRTABLE_BASE_ID
+  const tableName = process.env.AIRTABLE_TABLE_NAME
+
+  try {
+    const data = await airtableFetch(`/meta/bases/${baseId}/tables`)
+    const table = data.tables.find((t) => t.name === tableName)
+
+    if (!table) {
+      return response.status(404).json({ error: `Table '${tableName}' not found` })
     }
 
-    const token = process.env.AIRTABLE_TOKEN
-    const baseId = process.env.AIRTABLE_BASE_ID
-    const tableName = process.env.AIRTABLE_TABLE_NAME
-
-    if (!token || !baseId || !tableName) {
-        return response.status(500).json({
-            error: 'Missing Airtable environment variables on the server.'
-        })
+    const extractChoices = (fieldName) => {
+      const field = table.fields.find((f) => f.name === fieldName)
+      return field?.options?.choices?.map((c) => c.name) || []
     }
 
-    try {
-        const airtableResponse = await fetch(
-            `https://api.airtable.com/v0/meta/bases/${baseId}/tables`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        )
+    return response.status(200).json({
+      stack: extractChoices('Stack'),
+      type: extractChoices('Type'),
+      infrastructure: extractChoices('Infrastructure'),
+    })
 
-        if (!airtableResponse.ok) {
-            return response.status(airtableResponse.status).json({
-                error: `Airtable returned ${airtableResponse.status}`
-            })
-        }
-
-        const data = await airtableResponse.json()
-
-        // Selection
-        const table = data.tables.find((t) => t.name === tableName)
-        
-        const stackField = table.fields.find((f) => f.name === "Stack")
-        const typeField = table.fields.find((f) => f.name === "Type")
-        const infrastructureField = table.fields.find((f) => f.name === "Infrastructure")
-
-        // Mapping
-        const stackOptions = stackField.options.choices.map((c) => c.name)
-        const typeOptions = typeField.options.choices.map((c) => c.name)
-        const infrastructureOptions = infrastructureField.options.choices.map((c) => c.name)
-
-        return response.status(200).json({
-            stack: stackOptions,
-            type: typeOptions,
-            infrastructure: infrastructureOptions,
-        })
-
-    } catch (error) {
-        console.error('[api/projects] fetch error:', error)
-        return response.status(500).json({ error: 'Failed to fetch data from Airtable' })
-    }
-}
+  } catch (error) {
+    console.error('[api/admin/schema] error:', error.message)
+    return response.status(error.status || 500).json({ error: error.message })
+  }
+})

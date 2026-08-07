@@ -1,6 +1,5 @@
 <script setup>
 const frontendSkills = [
-  'Vue 3',
   'React',
   'JavaScript (ES6+)',
   'TypeScript',
@@ -219,7 +218,8 @@ const productSkills = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- FRONTEND ENGINEERING -->
-        <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+        <div
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
@@ -228,7 +228,8 @@ const productSkills = [
                   Frontend Engineering
                 </h3>
               </div>
-              <span class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+              <span
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
                 CORE_DEV
               </span>
             </div>
@@ -243,7 +244,8 @@ const productSkills = [
         </div>
 
         <!-- UI SYSTEMS & STYLING -->
-        <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+        <div
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
@@ -252,7 +254,8 @@ const productSkills = [
                   UI Systems & Styling
                 </h3>
               </div>
-              <span class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+              <span
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
                 DESIGN_SYS
               </span>
             </div>
@@ -267,7 +270,8 @@ const productSkills = [
         </div>
 
         <!-- BACKEND & DATABASES -->
-        <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+        <div
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
@@ -276,7 +280,8 @@ const productSkills = [
                   Backend & Database Systems
                 </h3>
               </div>
-              <span class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+              <span
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
                 SERVER_DATA
               </span>
             </div>
@@ -291,7 +296,8 @@ const productSkills = [
         </div>
 
         <!-- PRODUCT DELIVERY & SOFT SKILLS -->
-        <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+        <div
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
@@ -300,7 +306,8 @@ const productSkills = [
                   Product Delivery & Soft Skills
                 </h3>
               </div>
-              <span class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+              <span
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
                 PROCESS_UX
               </span>
             </div>
