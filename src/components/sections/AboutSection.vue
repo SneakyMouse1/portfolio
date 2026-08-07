@@ -1,4 +1,52 @@
 <script setup>
+const frontendSkills = [
+  'Vue 3',
+  'React',
+  'JavaScript (ES6+)',
+  'TypeScript',
+  'Responsive Web Design',
+  'Component Architecture',
+  'State Management',
+  'REST API Integration',
+  'Form Validation',
+  'Performance Optimization'
+]
+
+const uiSkills = [
+  'Tailwind CSS',
+  'Design Systems',
+  'Component Libraries',
+  'Design Tokens',
+  'Theming & Dark Mode',
+  'Figma-to-Code Workflow',
+  'Micro-Animations',
+  'Cross-Browser Consistency',
+  'Accessibility (WCAG)'
+]
+
+const backendSkills = [
+  'Laravel Monoliths',
+  'PHP',
+  'PostgreSQL',
+  'PL/pgSQL',
+  'REST API Blueprinting',
+  'Filament Administration',
+  'ERP Web Services',
+  'Postman API Testing',
+  'WordPress / PHP Patches'
+]
+
+const productSkills = [
+  'Agile Collaboration',
+  'Feature Scoping',
+  'Product Thinking',
+  'User-Centered Thinking',
+  'Design-Dev Collaboration',
+  'Attention to Detail',
+  'Problem-Solving Mindset',
+  'Feedback Receptiveness',
+  'Technical Communication'
+]
 </script>
 
 <template>
@@ -152,6 +200,120 @@
         </p>
       </div>
 
+    </div>
+
+    <!-- TECHNICAL SKILLS MATRIX -->
+    <div class="mt-14 pt-10 border-t-4 border-black">
+      <div class="mb-8">
+        <span
+          class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2">
+          SKILL_MATRIX // TOOLKIT_v2.6
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-display uppercase text-black tracking-wide">
+          Depth in frontend craft with empathy for design and product.
+        </h2>
+        <p class="font-mono text-xs text-stone-600 max-w-2xl mt-1 leading-relaxed">
+          A balanced toolkit that combines engineering precision with thoughtful user experience.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- FRONTEND ENGINEERING -->
+        <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+          <div>
+            <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3.5 h-3.5 bg-brutal-green border-2 border-black inline-block"></span>
+                <h3 class="font-display text-xl uppercase text-black tracking-wide">
+                  Frontend Engineering
+                </h3>
+              </div>
+              <span class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+                CORE_DEV
+              </span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span v-for="skill in frontendSkills" :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
+                {{ skill }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- UI SYSTEMS & STYLING -->
+        <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+          <div>
+            <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3.5 h-3.5 bg-brutal-pink border-2 border-black inline-block"></span>
+                <h3 class="font-display text-xl uppercase text-black tracking-wide">
+                  UI Systems & Styling
+                </h3>
+              </div>
+              <span class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+                DESIGN_SYS
+              </span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span v-for="skill in uiSkills" :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
+                {{ skill }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACKEND & DATABASES -->
+        <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+          <div>
+            <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3.5 h-3.5 bg-brutal-orange border-2 border-black inline-block"></span>
+                <h3 class="font-display text-xl uppercase text-black tracking-wide">
+                  Backend & Database Systems
+                </h3>
+              </div>
+              <span class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+                SERVER_DATA
+              </span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span v-for="skill in backendSkills" :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
+                {{ skill }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT DELIVERY & SOFT SKILLS -->
+        <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+          <div>
+            <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3.5 h-3.5 bg-brutal-purple border-2 border-black inline-block"></span>
+                <h3 class="font-display text-xl uppercase text-black tracking-wide">
+                  Product Delivery & Soft Skills
+                </h3>
+              </div>
+              <span class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+                PROCESS_UX
+              </span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span v-for="skill in productSkills" :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
+                {{ skill }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
