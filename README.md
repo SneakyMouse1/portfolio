@@ -44,6 +44,9 @@ Built with **Vue 3** around a custom **Neo-Brutalist** design system. Includes a
 │   │   └── schema.js         # Airtable field schema (auth required)
 │   ├── auth/
 │   │   └── login.js          # Admin login — returns JWT
+│   ├── utils/
+│   │   ├── airtable.js       # Centralized Airtable API client & error handler
+│   │   └── withAuth.js       # Higher-order authentication wrapper
 │   ├── contact.js            # Contact form — Turnstile verify + Resend email
 │   ├── projects.js           # Public portfolio data proxy to Airtable
 │   └── verifyAuth.js         # Shared JWT verification helper
@@ -56,8 +59,8 @@ Built with **Vue 3** around a custom **Neo-Brutalist** design system. Includes a
 │   │   └── main.css          # Global styles + Tailwind @theme tokens
 │   ├── components/
 │   │   ├── global/           # HeaderGlobal, FooterGlobal
-│   │   ├── sections/         # HeroSection, AboutSection, PortfolioSection, ContactSection
-│   │   └── ui/               # BrutalButton, BrutalModal, inputs, DotGrid, CardPortfolio, CardDetails
+│   │   ├── sections/         # HeroSection, AboutSection (with Technical Skills Matrix), PortfolioSection, ContactSection
+│   │   └── ui/               # BrutalButton, BrutalModal, inputs, DotGrid, CardPortfolio, CardDetails, SkeletonBox
 │   ├── composables/
 │   │   ├── useAuthFetch.js   # Authenticated fetch wrapper with token refresh logic
 │   │   └── useScrollTo.js    # Smooth scroll utility
@@ -70,7 +73,7 @@ Built with **Vue 3** around a custom **Neo-Brutalist** design system. Includes a
 │   │   └── AdminProjectFormView.vue
 │   └── main.js
 ├── .env                      # Local secrets — NOT committed to git
-├── vercel.json               # Vercel build config + API rewrites
+├── vercel.json               # Vercel deployment configuration
 └── package.json
 ```
 
