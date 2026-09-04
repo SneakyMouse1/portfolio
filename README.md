@@ -1,7 +1,16 @@
 # smyslov.dev — Personal Portfolio
 
-Personal portfolio of **Semyon Smyslov**, Web Developer based in Alicante, Spain.
-Built with **Vue 3** around a custom **Neo-Brutalist** design system. Includes a protected admin panel for managing portfolio content and a serverless contact form with bot protection.
+Personal portfolio of **Semyon Smyslov**, Web Developer based in Alicante, Spain.  
+Built with **Vue 3** and **TailwindCSS** in a neo-brutalist style. Features English and Spanish versions, individual project pages, an admin panel for updating projects via Airtable, and a contact form with spam protection.
+
+---
+
+## Features
+
+- **Bilingual (EN / ES)**: Clean `/es` subdirectory routes with reactive switching and dynamic Airtable translation.
+- **Project Case Studies**: Dedicated `/project/:id` pages with image carousels, tech stacks, and adjacent navigation.
+- **Admin Dashboard**: Simple JWT-protected area at `/admin` to create and edit projects in Airtable.
+- **Contact Form**: Serverless endpoint with Cloudflare Turnstile verification and email delivery via Resend.
 
 ---
 
@@ -10,27 +19,28 @@ Built with **Vue 3** around a custom **Neo-Brutalist** design system. Includes a
 ### Frontend
 | Layer | Technology |
 |---|---|
-| Framework | Vue 3 — Composition API, `<script setup>` |
+| Framework | Vue 3 (Composition API, `<script setup>`) |
 | Build tool | Vite 8 |
-| Styling | TailwindCSS v4 with a custom `@theme` design system |
-| Animation | GSAP — interactive dot-grid canvas |
-| Carousel | Swiper.js — image carousel inside project detail modals |
-| Routing | Vue Router 5 — `createWebHistory` |
+| Styling | TailwindCSS v4 with custom `@theme` tokens |
+| Localization | Custom i18n composable with `/es` routing |
+| Carousel | Swiper.js |
+| Canvas Animation | GSAP |
+| Routing | Vue Router 5 (`createWebHistory`) |
 
 ### Backend (Vercel Serverless Functions)
 | Layer | Technology |
 |---|---|
-| Portfolio data | Airtable — headless CMS, proxied via `/api/projects` |
-| Contact form | Resend — transactional email delivery |
-| Bot protection | Cloudflare Turnstile — server-side token verification |
-| Admin auth | JWT — stateless authentication, tokens stored in `localStorage` |
+| Projects data | Airtable (proxied via `/api/projects`) |
+| Contact form | Resend (`/api/contact`) |
+| Spam protection | Cloudflare Turnstile |
+| Admin auth | JWT (stored in `localStorage`) |
 
 ### Typography
 | Role | Font |
 |---|---|
-| Display / headings | Bebas Neue |
+| Headings | Bebas Neue |
 | Body | Plus Jakarta Sans |
-| Code / labels | JetBrains Mono |
+| Code & labels | JetBrains Mono |
 
 ---
 
@@ -45,35 +55,40 @@ Built with **Vue 3** around a custom **Neo-Brutalist** design system. Includes a
 │   ├── auth/
 │   │   └── login.js          # Admin login — returns JWT
 │   ├── utils/
-│   │   ├── airtable.js       # Centralized Airtable API client & error handler
-│   │   └── withAuth.js       # Higher-order authentication wrapper
+│   │   ├── airtable.js       # Airtable API client & error handler
+│   │   └── withAuth.js       # Authentication wrapper
 │   ├── contact.js            # Contact form — Turnstile verify + Resend email
 │   ├── projects.js           # Public portfolio data proxy to Airtable
-│   └── verifyAuth.js         # Shared JWT verification helper
+│   └── verifyAuth.js         # JWT verification helper
 ├── public/
 │   ├── favicon.ico
-│   ├── og-preview.png        # Open Graph social preview image
-│   └── robots.txt            # Blocks /admin from search crawlers
+│   ├── og-preview.png        # Social preview image
+│   └── robots.txt            # Search crawler rules
 ├── src/
 │   ├── assets/
-│   │   └── main.css          # Global styles + Tailwind @theme tokens
+│   │   └── main.css          # Styles + Tailwind @theme tokens
 │   ├── components/
 │   │   ├── global/           # HeaderGlobal, FooterGlobal
-│   │   ├── sections/         # HeroSection, AboutSection (with Technical Skills Matrix), PortfolioSection, ContactSection
-│   │   └── ui/               # BrutalButton, BrutalModal, inputs, DotGrid, CardPortfolio, CardDetails, SkeletonBox
+│   │   ├── sections/         # HeroSection, AboutSection, PortfolioSection, ContactSection
+│   │   └── ui/               # BrutalButton, MarqueeTicker, DotGrid, CardPortfolio, SkeletonBox, inputs
 │   ├── composables/
-│   │   ├── useAuthFetch.js   # Authenticated fetch wrapper with token refresh logic
+│   │   ├── useAuthFetch.js   # Fetch wrapper with auth header
+│   │   ├── useI18n.js        # Localization state, localePath helper & Airtable resolver
 │   │   └── useScrollTo.js    # Smooth scroll utility
+│   ├── locales/
+│   │   ├── en.js             # English texts
+│   │   └── es.js             # Spanish texts
 │   ├── router/
-│   │   └── index.js          # Routes + navigation guard for /admin
+│   │   └── index.js          # Routes (/ & /es, /project/:id, /admin) + auth guards
 │   ├── views/
-│   │   ├── HomeView.vue
-│   │   ├── AdminLoginView.vue
-│   │   ├── AdminDashboardView.vue
-│   │   └── AdminProjectFormView.vue
+│   │   ├── HomeView.vue              # Main portfolio page
+│   │   ├── ProjectView.vue           # Project case study page
+│   │   ├── AdminLoginView.vue        # Admin login
+│   │   ├── AdminDashboardView.vue    # Admin projects list
+│   │   └── AdminProjectFormView.vue  # Project edit/create form
 │   └── main.js
 ├── .env                      # Local secrets — NOT committed to git
-├── vercel.json               # Vercel deployment configuration
+├── vercel.json               # Vercel configuration & SPA rewrites
 └── package.json
 ```
 
@@ -89,10 +104,10 @@ npm install
 
 ### 2. Configure environment variables
 
-Create a `.env` file in the project root with the following variables:
+Create a `.env` file in the project root:
 
 ```env
-# Airtable (headless CMS)
+# Airtable
 AIRTABLE_TOKEN=your_token_here
 AIRTABLE_BASE_ID=your_base_id_here
 AIRTABLE_TABLE_NAME=your_table_name_here
@@ -105,11 +120,9 @@ JWT_SECRET=your_jwt_secret_here
 # Email (Resend)
 RESEND_API_KEY=your_resend_api_key_here
 
-# Cloudflare Turnstile (bot protection)
+# Cloudflare Turnstile
 TURNSTILE_SECRET_KEY=your_turnstile_secret_here
 ```
-
-> `.env` is listed in `.gitignore` and will never be committed to the repository.
 
 ### 3. Start the development server
 
@@ -117,20 +130,16 @@ TURNSTILE_SECRET_KEY=your_turnstile_secret_here
 npm run dev
 ```
 
-This runs `vercel dev`, which starts Vite **and** the `/api/` serverless functions simultaneously.
+This starts Vite and the `/api/` serverless functions via `vercel dev`.  
 Open [http://localhost:3000](http://localhost:3000).
-
-> **Note:** Cloudflare Turnstile does not render on unregistered domains.
-> For local testing, either add `localhost` to your Turnstile site's allowed domains in the Cloudflare Dashboard,
-> or temporarily replace the `data-sitekey` in `ContactSection.vue` with the official test key `1x00000000000000000000AA`.
 
 ---
 
 ## Deployment
 
-The project is connected to **Vercel** via GitHub. Every push to `main` triggers an automatic production deployment.
+The project is connected to **Vercel** via GitHub. Every push to `main` triggers an automatic deployment.
 
-Before deploying for the first time, add all environment variables in the [Vercel Dashboard](https://vercel.com/dashboard) under **Settings → Environment Variables**:
+Add the required environment variables in the [Vercel Dashboard](https://vercel.com/dashboard) under **Settings → Environment Variables**:
 
 ```
 AIRTABLE_TOKEN
