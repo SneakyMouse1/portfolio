@@ -10,6 +10,9 @@ const name = ref('')
 const description = ref('')
 const category = ref('')
 const location = ref('')
+const categoryES = ref('')
+const locationES = ref('')
+const descriptionES = ref('')
 const year = ref('')
 const realURL = ref('')
 const githubURL = ref('')
@@ -70,6 +73,9 @@ onMounted(async () => {
       description.value = foundProject.Description
       category.value = foundProject.Category
       location.value = foundProject.Location
+      categoryES.value = foundProject['Category ES'] || ''
+      locationES.value = foundProject['Location ES'] || ''
+      descriptionES.value = foundProject['Description ES'] || ''
       year.value = foundProject.Year
       realURL.value = foundProject.realURL
       githubURL.value = foundProject.GithubURL
@@ -105,6 +111,9 @@ const handleSubmit = async () => {
       Description: description.value,
       Category: category.value,
       Location: location.value,
+      'Category ES': categoryES.value || undefined,
+      'Location ES': locationES.value || undefined,
+      'Description ES': descriptionES.value || undefined,
       Year: year.value,
       realURL: realURL.value,
       GithubURL: githubURL.value,
@@ -276,6 +285,39 @@ const handleSubmit = async () => {
           <div>
             <label class="block font-black text-xs uppercase tracking-wider mb-1 text-black">Description</label>
             <textarea v-model="description" rows="4" placeholder="Short description of the project..."
+              class="w-full bg-white border-2 border-black px-3 py-2 text-sm font-bold focus:outline-none focus:bg-[#fff9db] transition-colors resize-none"></textarea>
+          </div>
+        </div>
+
+        <!-- SPANISH LOCALIZATION (ES) -->
+        <div class="flex flex-col gap-4 pt-2 border-t-2 border-black/10">
+          <div class="flex items-center gap-2">
+            <span
+              class="font-mono text-xs uppercase font-extrabold text-black bg-primary border-2 border-black px-2 py-0.5 inline-block">
+              SPANISH_TRANSLATION // (ES)
+            </span>
+            <span class="font-mono text-[10px] text-stone-500 uppercase font-bold">Optional - Falls back to English if empty</span>
+          </div>
+
+          <!-- Category ES + Location ES -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-black text-xs uppercase tracking-wider mb-1 text-black">Category (ES)</label>
+              <input v-model="categoryES" type="text" placeholder="e.g. Commercial project / Personal project"
+                class="w-full bg-white border-2 border-black px-3 py-2 text-sm font-bold focus:outline-none focus:bg-[#fff9db] transition-colors">
+            </div>
+
+            <div>
+              <label class="block font-black text-xs uppercase tracking-wider mb-1 text-black">Location (ES)</label>
+              <input v-model="locationES" type="text" placeholder="e.g. Alicante, España"
+                class="w-full bg-white border-2 border-black px-3 py-2 text-sm font-bold focus:outline-none focus:bg-[#fff9db] transition-colors">
+            </div>
+          </div>
+
+          <!-- Description ES -->
+          <div>
+            <label class="block font-black text-xs uppercase tracking-wider mb-1 text-black">Description (ES)</label>
+            <textarea v-model="descriptionES" rows="4" placeholder="Descripción del proyecto en español..."
               class="w-full bg-white border-2 border-black px-3 py-2 text-sm font-bold focus:outline-none focus:bg-[#fff9db] transition-colors resize-none"></textarea>
           </div>
         </div>

@@ -1,6 +1,6 @@
 # smyslov.dev — Personal Portfolio
 
-Personal portfolio of **Semyon Smyslov**, Junior Web Developer based in Alicante, Spain.
+Personal portfolio of **Semyon Smyslov**, Web Developer based in Alicante, Spain.
 Built with **Vue 3** around a custom **Neo-Brutalist** design system. Includes a protected admin panel for managing portfolio content and a serverless contact form with bot protection.
 
 ---

@@ -1,4 +1,9 @@
 <script setup>
+import { computed } from 'vue';
+import { useI18n } from "@/composables/useI18n.js";
+
+const { t } = useI18n();
+
 const frontendSkills = [
   'React',
   'JavaScript (ES6+)',
@@ -9,7 +14,7 @@ const frontendSkills = [
   'REST API Integration',
   'Form Validation',
   'Performance Optimization'
-]
+];
 
 const uiSkills = [
   'Tailwind CSS',
@@ -21,7 +26,7 @@ const uiSkills = [
   'Micro-Animations',
   'Cross-Browser Consistency',
   'Accessibility (WCAG)'
-]
+];
 
 const backendSkills = [
   'Laravel Monoliths',
@@ -33,19 +38,12 @@ const backendSkills = [
   'ERP Web Services',
   'Postman API Testing',
   'WordPress / PHP Patches'
-]
+];
 
-const productSkills = [
-  'Agile Collaboration',
-  'Feature Scoping',
-  'Product Thinking',
-  'User-Centered Thinking',
-  'Design-Dev Collaboration',
-  'Attention to Detail',
-  'Problem-Solving Mindset',
-  'Feedback Receptiveness',
-  'Technical Communication'
-]
+const productSkills = computed(() => {
+  const list = t('about.softSkills');
+  return Array.isArray(list) ? list : [];
+});
 </script>
 
 <template>
@@ -53,11 +51,12 @@ const productSkills = [
 
     <div class="mb-8">
       <span
-        class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2">
-        PROFILE_DATA
+        class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2"
+      >
+        {{ t('about.badge') }}
       </span>
       <h2 class="text-3xl sm:text-4xl font-display uppercase text-black tracking-wide">
-        BACKGROUND & CORE COMPETENCIES
+        {{ t('about.heading') }}
       </h2>
     </div>
 
@@ -67,65 +66,70 @@ const productSkills = [
         <div>
           <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
             <h3 class="font-display text-xl uppercase text-black tracking-wide">
-              Enterprise ERP Integration Practice
+              {{ t('about.erp.title') }}
             </h3>
             <span class="font-mono text-xs bg-brutal-green text-black border-2 border-black px-2 py-0.5 font-bold">
-              INTEGRA QS // 500 HRS
+              {{ t('about.erp.tag') }}
             </span>
           </div>
 
           <p class="font-mono text-xs text-stone-700 leading-relaxed mb-4">
-            Analyzed corporate ERP architecture and developed functional Minimum Viable Products (MVP) to demonstrate
-            secure web service integrations. Operated directly within enterprise-level database systems and backend
-            frameworks.
+            {{ t('about.erp.desc') }}
           </p>
 
           <ul class="space-y-2 font-mono text-xs font-bold text-black">
             <li class="flex items-start gap-2">
               <span class="text-brutal-orange">➔</span>
-              <span>Backend & API Blueprinting: Designed and validated Laravel REST API endpoints simulating complex
-                logistics, adaptive routing, and product management systems via Postman.</span>
+              <span><strong>{{ t('about.erp.point1_title') }}</strong> {{ t('about.erp.point1_desc') }}</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-brutal-orange">➔</span>
-              <span>Advanced Database Systems: Conducted direct PostgreSQL optimization, PL/pgSQL transaction handling,
-                and schema alignment ensuring internal ERP data integrity.</span>
+              <span><strong>{{ t('about.erp.point2_title') }}</strong> {{ t('about.erp.point2_desc') }}</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-brutal-orange">➔</span>
-              <span>ERP Logic Development: Developed internal business logic modules and structural management
-                interfaces utilizing WLanguage (WinDev) for stock and order administration.</span>
+              <span><strong>{{ t('about.erp.point3_title') }}</strong> {{ t('about.erp.point3_desc') }}</span>
             </li>
           </ul>
         </div>
 
         <div class="border-t-2 border-black/10 pt-3 mt-4 text-[10px] font-mono text-stone-500 uppercase">
-          ● Internship · Integra Quality Software · Mar–Jun 2026 · Alicante, Spain
+          {{ t('about.erp.footer') }}
         </div>
       </div>
 
+      <!-- STATS -->
       <div class="bg-primary text-black border-4 border-black shadow-lg p-6 flex flex-col justify-between">
         <div class="font-mono">
-          <div class="text-[10px] uppercase font-bold text-black/60 mb-2">ENGINEERING_STATS //</div>
+          <div class="text-[10px] uppercase font-bold text-black/60 mb-2">
+            {{ t('about.stats.tag') }}
+          </div>
           <div class="space-y-4">
             <div>
               <div class="text-4xl font-black leading-none">500+</div>
-              <div class="text-xs font-bold uppercase tracking-wider">Practice Hours</div>
+              <div class="text-xs font-bold uppercase tracking-wider">
+                {{ t('about.stats.hours') }}
+              </div>
             </div>
             <div>
               <div class="text-4xl font-black leading-none">2</div>
-              <div class="text-xs font-bold uppercase tracking-wider">Laravel Monoliths</div>
+              <div class="text-xs font-bold uppercase tracking-wider">
+                {{ t('about.stats.monoliths') }}
+              </div>
             </div>
             <div>
               <div class="text-4xl font-black leading-none">5+</div>
-              <div class="text-xs font-bold uppercase tracking-wider">Years in Design</div>
+              <div class="text-xs font-bold uppercase tracking-wider">
+                {{ t('about.stats.designYears') }}
+              </div>
             </div>
           </div>
         </div>
 
         <div
-          class="bg-black text-white p-3 border-2 border-black font-mono text-xs uppercase text-center font-bold tracking-wider">
-          STATUS: READY FOR TEAMS
+          class="bg-black text-white p-3 border-2 border-black font-mono text-xs uppercase text-center font-bold tracking-wider"
+        >
+          {{ t('about.stats.status') }}
         </div>
       </div>
 
@@ -134,17 +138,15 @@ const productSkills = [
         <div>
           <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
             <h3 class="font-display text-xl uppercase text-black tracking-wide">
-              NidoReal Platform
+              {{ t('about.degree.title') }}
             </h3>
             <span class="font-mono text-xs bg-brutal-orange text-white border-2 border-black px-2 py-0.5 font-bold">
-              DEGREE APP
+              {{ t('about.degree.tag') }}
             </span>
           </div>
 
           <p class="font-mono text-xs text-stone-700 leading-relaxed mb-4">
-            Engineered a comprehensive real estate agency aggregator as a final degree project for the DAW curriculum.
-            The application acts as a central hub where multiple agencies manage internal properties and public
-            allocations.
+            {{ t('about.degree.desc') }}
           </p>
 
           <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase font-bold">
@@ -158,44 +160,42 @@ const productSkills = [
         </div>
 
         <div class="text-[10px] font-mono text-stone-500 uppercase mt-4">
-          ● Final degree project · DAW curriculum · Submitted Jun 2026
+          {{ t('about.degree.footer') }}
         </div>
       </div>
 
-      <!-- DESIGN -->
+      <!-- DESIGN DNA -->
       <div
-        class="md:col-span-2 bg-brutal-pink text-black border-4 border-black shadow-lg p-6 flex flex-col justify-between">
+        class="md:col-span-2 bg-brutal-pink text-black border-4 border-black shadow-lg p-6 flex flex-col justify-between"
+      >
         <div>
           <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
             <h3 class="font-display text-xl uppercase text-black tracking-wide">
-              Visual DNA & Interface Implementation
+              {{ t('about.design.title') }}
             </h3>
             <span class="font-mono text-xs bg-white text-black border-2 border-black px-2 py-0.5 font-bold">
-              DESIGN HYBRID
+              {{ t('about.design.tag') }}
             </span>
           </div>
 
           <p class="font-mono text-xs text-black font-medium leading-relaxed mb-4">
-            Possess a solid background in graphic and interface design, providing a major efficiency advantage when
-            translating layout designs into operational frontends. Experienced in adjusting layouts directly within
-            production files without requiring design specification assistance.
+            {{ t('about.design.desc') }}
           </p>
 
           <div class="grid grid-cols-2 gap-4 font-mono text-xs font-bold pt-1">
             <div>
-              <div class="text-black/60 uppercase mb-1">Vector & Compositing:</div>
-              <div>Adobe Illustrator, Photoshop</div>
+              <div class="text-black/60 uppercase mb-1">{{ t('about.design.vectorTitle') }}</div>
+              <div>{{ t('about.design.vectorTools') }}</div>
             </div>
             <div>
-              <div class="text-black/60 uppercase text-[10px] mb-1">UI/UX Systems Prototyping:</div>
-              <div>Figma, Adobe XD, Sketch</div>
+              <div class="text-black/60 uppercase text-[10px] mb-1">{{ t('about.design.uiTitle') }}</div>
+              <div>{{ t('about.design.uiTools') }}</div>
             </div>
           </div>
         </div>
 
         <p class="font-mono text-[11px] text-black/80 font-bold border-t border-black/20 pt-3 mt-4">
-          * Engineering Capability: Proven track record of managing WordPress/Elementor systems with custom tailored CSS
-          overrides and PHP patches.
+          {{ t('about.design.footnote') }}
         </p>
       </div>
 
@@ -205,38 +205,44 @@ const productSkills = [
     <div class="mt-14 pt-10 border-t-4 border-black">
       <div class="mb-8">
         <span
-          class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2">
-          SKILL_MATRIX // TOOLKIT_v2.6
+          class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2"
+        >
+          {{ t('about.skillsMatrix.tag') }}
         </span>
         <h2 class="text-3xl sm:text-4xl font-display uppercase text-black tracking-wide">
-          Depth in frontend craft with empathy for design and product.
+          {{ t('about.skillsMatrix.heading') }}
         </h2>
         <p class="font-mono text-xs text-stone-600 max-w-2xl mt-1 leading-relaxed">
-          A balanced toolkit that combines engineering precision with thoughtful user experience.
+          {{ t('about.skillsMatrix.subheading') }}
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- FRONTEND ENGINEERING -->
         <div
-          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
+        >
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
                 <span class="w-3.5 h-3.5 bg-brutal-green border-2 border-black inline-block"></span>
                 <h3 class="font-display text-xl uppercase text-black tracking-wide">
-                  Frontend Engineering
+                  {{ t('about.skillsMatrix.frontend') }}
                 </h3>
               </div>
               <span
-                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase"
+              >
                 CORE_DEV
               </span>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-1">
-              <span v-for="skill in frontendSkills" :key="skill"
-                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
+              <span
+                v-for="skill in frontendSkills"
+                :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none"
+              >
                 {{ skill }}
               </span>
             </div>
@@ -245,24 +251,29 @@ const productSkills = [
 
         <!-- UI SYSTEMS & STYLING -->
         <div
-          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
+        >
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
                 <span class="w-3.5 h-3.5 bg-brutal-pink border-2 border-black inline-block"></span>
                 <h3 class="font-display text-xl uppercase text-black tracking-wide">
-                  UI Systems & Styling
+                  {{ t('about.skillsMatrix.ui') }}
                 </h3>
               </div>
               <span
-                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase"
+              >
                 DESIGN_SYS
               </span>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-1">
-              <span v-for="skill in uiSkills" :key="skill"
-                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
+              <span
+                v-for="skill in uiSkills"
+                :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none"
+              >
                 {{ skill }}
               </span>
             </div>
@@ -271,24 +282,29 @@ const productSkills = [
 
         <!-- BACKEND & DATABASES -->
         <div
-          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
+        >
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
                 <span class="w-3.5 h-3.5 bg-brutal-orange border-2 border-black inline-block"></span>
                 <h3 class="font-display text-xl uppercase text-black tracking-wide">
-                  Backend & Database Systems
+                  {{ t('about.skillsMatrix.backend') }}
                 </h3>
               </div>
               <span
-                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase"
+              >
                 SERVER_DATA
               </span>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-1">
-              <span v-for="skill in backendSkills" :key="skill"
-                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
+              <span
+                v-for="skill in backendSkills"
+                :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none"
+              >
                 {{ skill }}
               </span>
             </div>
@@ -297,24 +313,29 @@ const productSkills = [
 
         <!-- PRODUCT DELIVERY & SOFT SKILLS -->
         <div
-          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150">
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
+        >
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
                 <span class="w-3.5 h-3.5 bg-brutal-purple border-2 border-black inline-block"></span>
                 <h3 class="font-display text-xl uppercase text-black tracking-wide">
-                  Product Delivery & Soft Skills
+                  {{ t('about.skillsMatrix.product') }}
                 </h3>
               </div>
               <span
-                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase"
+              >
                 PROCESS_UX
               </span>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-1">
-              <span v-for="skill in productSkills" :key="skill"
-                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
+              <span
+                v-for="skill in productSkills"
+                :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none"
+              >
                 {{ skill }}
               </span>
             </div>

@@ -1,10 +1,13 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import BrutalInput from "@/components/ui/Inputs/BrutalInput.vue";
 import BrutalSelect from "@/components/ui/Inputs/BrutalSelect.vue";
 import BrutalTextarea from "@/components/ui/Inputs/BrutalTextarea.vue";
 import BrutalButton from "@/components/ui/BrutalButton.vue";
 import { AkTelegramFill, AkWhatsappFill } from '@kalimahapps/vue-icons';
+import { useI18n } from "@/composables/useI18n.js";
+
+const { t } = useI18n();
 
 const formData = ref({
   name: "",
@@ -19,44 +22,52 @@ const submitStatus = ref(null); // null | 'success' | 'error'
 const turnstileToken = ref(null);
 let turnstileWidgetId = null;
 
-const serviceOptions = [
-  "Full-Stack Web Application",
-  "UI/UX Design System",
-  "Database Schema & API Development",
-  "Continuous Integration / Consultation",
-];
-
-// Turnstile can't auto-scan a Vue component — the div doesn't exist at page load.
-// Render manually and poll until the CF script is ready.
-onMounted(() => {
-  const renderTurnstile = () => {
-    if (window.turnstile) {
-      turnstileWidgetId = window.turnstile.render('#cf-turnstile-container', {
-        sitekey: '0x4AAAAAADrcANSnd95aZSy_',
-        callback: (token) => { turnstileToken.value = token; },
-        'expired-callback': () => { turnstileToken.value = null; },
-        'error-callback': () => { turnstileToken.value = null; },
-      });
-    } else {
-      setTimeout(renderTurnstile, 200);
-    }
-  };
-  renderTurnstile();
+const serviceOptions = computed(() => {
+  const list = t('contact.serviceOptions');
+  return Array.isArray(list) ? list : [];
 });
 
-const handleSubmit = async () => {
-  isSubmitting.value = true;
-  submitStatus.value = null;
+onMounted(() => {
+  // Wait for Turnstile script to load
+  const checkTurnstile = setInterval(() => {
+    if (window.turnstile) {
+      clearInterval(checkTurnstile);
+      renderTurnstile();
+    }
+  }, 100);
 
-  if (!turnstileToken.value) {
-    console.warn('[ContactForm] Turnstile token missing — widget may not have loaded.');
-    submitStatus.value = 'error';
-    isSubmitting.value = false;
+  // Stop polling after 10 seconds
+  setTimeout(() => clearInterval(checkTurnstile), 10000);
+});
+
+const renderTurnstile = () => {
+  const container = document.getElementById('cf-turnstile-container');
+  if (!container || !window.turnstile) return;
+
+  turnstileWidgetId = window.turnstile.render(container, {
+    sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY,
+    callback: (token) => {
+      turnstileToken.value = token;
+    },
+    'expired-callback': () => {
+      turnstileToken.value = null;
+    },
+    'error-callback': () => {
+      turnstileToken.value = null;
+    },
+  });
+};
+
+const handleSubmit = async () => {
+  if (!formData.value.name || !formData.value.email || !formData.value.message || !formData.value.acceptTerms) {
     return;
   }
 
+  isSubmitting.value = true;
+  submitStatus.value = null;
+
   try {
-    const response = await fetch('/api/contact', {
+    const response = await fetch("/api/contact", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -88,9 +99,6 @@ const handleSubmit = async () => {
       console.error('[ContactForm] Server error:', response.status, errData);
       submitStatus.value = 'error';
       turnstileToken.value = null;
-      if (turnstileWidgetId !== null && window.turnstile) {
-        window.turnstile.reset(turnstileWidgetId);
-      }
     }
 
   } catch (e) {
@@ -111,15 +119,13 @@ const handleSubmit = async () => {
       <div>
         <span
           class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-3">
-          CONTACT
+          {{ t('contact.tag') }}
         </span>
         <h2 class="text-3xl sm:text-4xl font-display uppercase text-black leading-none mb-4 tracking-wide">
-          LET'S BUILD SOMETHING TOGETHER.
+          {{ t('contact.heading') }}
         </h2>
         <p class="text-xs font-mono font-bold text-stone-700 leading-relaxed mb-6">
-          I am a junior web developer focused on building clean, well-structured web applications. Currently based in
-          Alicante, Spain, I am highly motivated to join a development team, learn from experienced specialists, and
-          contribute to real-world projects. Drop me a line here or catch me via instant channels.
+          {{ t('contact.bio') }}
         </p>
 
         <!-- INSTANT CHANNELS -->
@@ -157,21 +163,21 @@ const handleSubmit = async () => {
 
         <div class="border-b-2 border-black/40 pb-2 mb-3">
           <span class="font-mono text-xs font-black text-stone-600 block uppercase">
-            SEND A MESSAGE:
+            SEND A MESSAGE //
           </span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <BrutalInput v-model="formData.name" label="Name:" placeholder="E.g. John Doe" required />
-          <BrutalInput v-model="formData.email" type="email" label="Email Address:" placeholder="example@domain.com"
+          <BrutalInput v-model="formData.name" :label="t('contact.nameLabel')" :placeholder="t('contact.namePlaceholder')" required />
+          <BrutalInput v-model="formData.email" type="email" :label="t('contact.emailLabel')" :placeholder="t('contact.emailPlaceholder')"
             required />
         </div>
 
-        <BrutalSelect v-model="formData.serviceType" label="Project Type / Interest:" :options="serviceOptions"
-          placeholder="Select option..." required />
+        <BrutalSelect v-model="formData.serviceType" :label="t('contact.serviceLabel')" :options="serviceOptions"
+          :placeholder="t('contact.servicePlaceholder')" required />
 
-        <BrutalTextarea v-model="formData.message" label="Message Details:"
-          placeholder="Describe your project, offer, or any details you'd like to share..." required />
+        <BrutalTextarea v-model="formData.message" :label="t('contact.messageLabel')"
+          :placeholder="t('contact.messagePlaceholder')" required />
 
         <div class="flex items-center gap-4 pt-2 select-none">
           <div class="brutal-checkbox">
@@ -180,27 +186,28 @@ const handleSubmit = async () => {
           </div>
 
           <label for="terms-checkbox"
-            class="font-mono text-[11px] font-bold text-stone-700 leading-tight cursor-pointer">
-            I AGREE TO HAVE MY CONTACT INFO PROCESSED FOR COMMUNICATION PURPOSES.
+            class="font-mono text-[11px] font-bold text-stone-700 leading-tight cursor-pointer uppercase">
+            {{ t('contact.termsText') }}
           </label>
         </div>
 
         <!-- STATUS MESSAGES -->
         <div v-if="submitStatus === 'success'"
           class="font-mono text-xs font-bold uppercase bg-brutal-green border-2 border-black p-3 shadow-sm">
-          ✓ MESSAGE SENT — I'LL GET BACK TO YOU SOON.
+          ✓ {{ t('contact.successTitle') }} — {{ t('contact.successDesc') }}
         </div>
         <div v-if="submitStatus === 'error'"
           class="font-mono text-xs font-bold uppercase text-white bg-brutal-red border-2 border-black p-3 shadow-sm">
-          ✕ SOMETHING WENT WRONG — PLEASE TRY AGAIN OR USE WHATSAPP/TELEGRAM.
+          ✕ {{ t('contact.errorTitle') }} — {{ t('contact.errorDesc') }}
         </div>
 
         <div id="cf-turnstile-container"></div>
 
         <BrutalButton type="submit" :disabled="isSubmitting"
           bg-class="bg-black text-white shadow-primary w-full block text-center mt-2">
-          {{ isSubmitting ? 'SENDING MESSAGE...' : '➔ DISPATCH FORM' }}
+          {{ isSubmitting ? t('contact.sending') : t('contact.send') }}
         </BrutalButton>
+
       </form>
     </div>
 
@@ -208,50 +215,45 @@ const handleSubmit = async () => {
 </template>
 
 <style scoped>
-/* Brutal checkbox */
 .brutal-checkbox {
   position: relative;
   width: 24px;
   height: 24px;
   min-width: 24px;
-  border: 4px solid #000;
   background-color: #fff;
-  box-shadow: 2px 2px 0px 0px #FF8AE2;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px 0px #000;
+  cursor: pointer;
 }
 
-/* Hidden native input layer */
-.brutal-checkbox input[type="checkbox"] {
+.brutal-checkbox input {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   opacity: 0;
   cursor: pointer;
-  z-index: 2;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  margin: 0;
 }
 
-/* Unicode character styling */
-.brutal-checkbox .brutal-checkbox-tick {
+.brutal-checkbox-tick {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
   font-weight: 900;
+  font-size: 16px;
+  line-height: 1;
   color: #000;
-  opacity: 0;
-  transition: opacity 0.1s ease;
-  z-index: 1;
 }
 
-/* Conditional background toggle */
-.brutal-checkbox:has(input:checked) {
-  background-color: #FFDE4D;
+.brutal-checkbox input:checked~.brutal-checkbox-tick {
+  display: block;
 }
 
-/* Visibility status transition */
-.brutal-checkbox input:checked+.brutal-checkbox-tick {
-  opacity: 1;
+.brutal-checkbox:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #000;
 }
 </style>
