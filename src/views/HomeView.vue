@@ -6,12 +6,13 @@ import ContactSection from "@/components/sections/ContactSection.vue";
 import FooterGlobal from "@/components/global/FooterGlobal.vue";
 import HeaderGlobal from "@/components/global/HeaderGlobal.vue";
 import DotGrid from "@/components/ui/DotGrid/DotGrid.vue";
+import MarqueeTicker from "@/components/ui/MarqueeTicker.vue";
 </script>
 
 <template>
   <HeaderGlobal />
 
-  <div class="relative w-full border-b-4 border-black bg-background">
+  <div class="relative w-full bg-background">
 
     <div class="absolute inset-0 z-0">
       <DotGrid
@@ -29,6 +30,9 @@ import DotGrid from "@/components/ui/DotGrid/DotGrid.vue";
       <HeroSection />
     </div>
   </div>
+
+  <!-- MARQUEE TICKER (BETWEEN HERO & ABOUT) -->
+  <MarqueeTicker />
 
   <main>
     <AboutSection />
