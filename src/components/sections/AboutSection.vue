@@ -44,6 +44,21 @@ const productSkills = computed(() => {
   const list = t('about.softSkills');
   return Array.isArray(list) ? list : [];
 });
+
+const clientCities = computed(() => {
+  const list = t('about.clientWork.card1_cities');
+  return Array.isArray(list) ? list : [];
+});
+
+const clientPoints2 = computed(() => {
+  const list = t('about.clientWork.card2_points');
+  return Array.isArray(list) ? list : [];
+});
+
+const clientPoints3 = computed(() => {
+  const list = t('about.clientWork.card3_points');
+  return Array.isArray(list) ? list : [];
+});
 </script>
 
 <template>
@@ -139,70 +154,201 @@ const productSkills = computed(() => {
         </div>
       </div>
 
-      <!-- DEGREE PROJECT -->
-      <div class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
-            <h3 class="font-display text-xl uppercase text-black tracking-wide">
-              {{ t('about.degree.title') }}
-            </h3>
-            <span class="font-mono text-xs bg-brutal-orange text-white border-2 border-black px-2 py-0.5 font-bold">
-              {{ t('about.degree.tag') }}
-            </span>
-          </div>
-
-          <p class="font-mono text-xs text-stone-700 leading-relaxed mb-4">
-            {{ t('about.degree.desc') }}
-          </p>
-
-          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase font-bold">
-            <span class="bg-stone-100 border border-black px-2 py-0.5 text-black">Laravel Monolith</span>
-            <span class="bg-stone-100 border border-black px-2 py-0.5 text-black">Filament Administration</span>
-            <span class="bg-stone-100 border border-black px-2 py-0.5 text-black">PostgreSQL</span>
-            <span class="bg-stone-100 border border-black px-2 py-0.5 text-black">Mapbox GL JS</span>
-            <span class="bg-stone-100 border border-black px-2 py-0.5 text-black">Alpine.js</span>
-            <span class="bg-stone-100 border border-black px-2 py-0.5 text-black">Swup Transitions</span>
-          </div>
-        </div>
-
-        <div class="text-[10px] font-mono text-stone-500 uppercase mt-4">
-          {{ t('about.degree.footer') }}
-        </div>
-      </div>
-
-      <!-- DESIGN DNA -->
+      <!-- ROW 2: FREELANCE & CLIENT FOOTPRINT (3 CARDS, 1 COL EACH) -->
+      <!-- CARD 1: CROSS-BORDER CLIENTS -->
       <div
-        class="md:col-span-2 bg-brutal-pink text-black border-4 border-black shadow-lg p-6 flex flex-col justify-between"
+        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
       >
         <div>
           <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
             <h3 class="font-display text-xl uppercase text-black tracking-wide">
-              {{ t('about.design.title') }}
+              {{ t('about.clientWork.card1_title') }}
             </h3>
-            <span class="font-mono text-xs bg-white text-black border-2 border-black px-2 py-0.5 font-bold">
+            <span class="font-mono text-xs bg-brutal-teal text-black border-2 border-black px-2 py-0.5 font-bold uppercase">
+              {{ t('about.clientWork.card1_tag') }}
+            </span>
+          </div>
+
+          <p class="font-mono text-xs text-stone-700 leading-relaxed mb-4">
+            {{ t('about.clientWork.card1_desc') }}
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase font-bold">
+            <span
+              v-for="city in clientCities"
+              :key="city"
+              class="bg-stone-100 border border-black px-2 py-0.5 text-black"
+            >
+              {{ city }}
+            </span>
+          </div>
+        </div>
+
+        <div class="border-t-2 border-black/10 pt-3 mt-4 text-[10px] font-mono text-stone-500 uppercase font-bold">
+          {{ t('about.clientWork.card1_footer') }}
+        </div>
+      </div>
+
+      <!-- CARD 2: DIRECT COLLABORATION -->
+      <div
+        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
+      >
+        <div>
+          <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
+            <h3 class="font-display text-xl uppercase text-black tracking-wide">
+              {{ t('about.clientWork.card2_title') }}
+            </h3>
+            <span class="font-mono text-xs bg-brutal-orange text-white border-2 border-black px-2 py-0.5 font-bold uppercase">
+              {{ t('about.clientWork.card2_tag') }}
+            </span>
+          </div>
+
+          <p class="font-mono text-xs text-stone-700 leading-relaxed mb-4">
+            {{ t('about.clientWork.card2_desc') }}
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase font-bold">
+            <span
+              v-for="point in clientPoints2"
+              :key="point"
+              class="bg-stone-100 border border-black px-2 py-0.5 text-black"
+            >
+              {{ point }}
+            </span>
+          </div>
+        </div>
+
+        <div class="border-t-2 border-black/10 pt-3 mt-4 text-[10px] font-mono text-stone-500 uppercase font-bold">
+          {{ t('about.clientWork.card2_footer') }}
+        </div>
+      </div>
+
+      <!-- CARD 3: PRAGMATIC DEV -->
+      <div
+        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
+      >
+        <div>
+          <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
+            <h3 class="font-display text-xl uppercase text-black tracking-wide">
+              {{ t('about.clientWork.card3_title') }}
+            </h3>
+            <span class="font-mono text-xs bg-brutal-purple text-white border-2 border-black px-2 py-0.5 font-bold uppercase">
+              {{ t('about.clientWork.card3_tag') }}
+            </span>
+          </div>
+
+          <p class="font-mono text-xs text-stone-700 leading-relaxed mb-4">
+            {{ t('about.clientWork.card3_desc') }}
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase font-bold">
+            <span
+              v-for="point in clientPoints3"
+              :key="point"
+              class="bg-stone-100 border border-black px-2 py-0.5 text-black"
+            >
+              {{ point }}
+            </span>
+          </div>
+        </div>
+
+        <div class="border-t-2 border-black/10 pt-3 mt-4 text-[10px] font-mono text-stone-500 uppercase font-bold">
+          {{ t('about.clientWork.card3_footer') }}
+        </div>
+      </div>
+
+      <!-- ROW 3: VISUAL DNA & INTERFACE IMPLEMENTATION (FULL WIDTH 3-COL CARD) -->
+      <div
+        class="md:col-span-3 bg-brutal-pink text-black border-4 border-black shadow-lg p-6 sm:p-8 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
+      >
+        <div>
+          <div class="flex flex-wrap items-center justify-between border-b-2 border-black/20 pb-4 mb-5 gap-2">
+            <div>
+              <h3 class="font-display text-2xl sm:text-3xl uppercase text-black tracking-wide">
+                {{ t('about.design.title') }}
+              </h3>
+            </div>
+            <span class="font-mono text-xs bg-white text-black border-2 border-black px-2.5 py-1 font-black shadow-sm uppercase">
               {{ t('about.design.tag') }}
             </span>
           </div>
 
-          <p class="font-mono text-xs text-black font-medium leading-relaxed mb-4">
+          <p class="font-mono text-xs sm:text-sm text-black font-semibold leading-relaxed mb-6 max-w-4xl">
             {{ t('about.design.desc') }}
           </p>
 
-          <div class="grid grid-cols-2 gap-4 font-mono text-xs font-bold pt-1">
-            <div>
-              <div class="text-black/60 uppercase mb-1">{{ t('about.design.vectorTitle') }}</div>
-              <div>{{ t('about.design.vectorTools') }}</div>
+          <!-- 4 PILLARS IN EXPANDED DESIGN DNA -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
+            <!-- PILLAR 1: VECTOR & BRAND -->
+            <div class="bg-white/80 border-2 border-black p-4 flex flex-col justify-between shadow-sm">
+              <div>
+                <div class="text-[10px] font-black uppercase text-black/60 mb-1">
+                  {{ t('about.design.col1_title') }}
+                </div>
+                <div class="text-xs font-black text-black mb-2">
+                  {{ t('about.design.col1_tools') }}
+                </div>
+                <p class="text-[11px] text-stone-800 leading-relaxed font-medium">
+                  {{ t('about.design.col1_desc') }}
+                </p>
+              </div>
             </div>
-            <div>
-              <div class="text-black/60 uppercase text-[10px] mb-1">{{ t('about.design.uiTitle') }}</div>
-              <div>{{ t('about.design.uiTools') }}</div>
+
+            <!-- PILLAR 2: UI/UX & DESIGN SYSTEMS -->
+            <div class="bg-white/80 border-2 border-black p-4 flex flex-col justify-between shadow-sm">
+              <div>
+                <div class="text-[10px] font-black uppercase text-black/60 mb-1">
+                  {{ t('about.design.col2_title') }}
+                </div>
+                <div class="text-xs font-black text-black mb-2">
+                  {{ t('about.design.col2_tools') }}
+                </div>
+                <p class="text-[11px] text-stone-800 leading-relaxed font-medium">
+                  {{ t('about.design.col2_desc') }}
+                </p>
+              </div>
+            </div>
+
+            <!-- PILLAR 3: DESIGN-TO-CODE -->
+            <div class="bg-white/80 border-2 border-black p-4 flex flex-col justify-between shadow-sm">
+              <div>
+                <div class="text-[10px] font-black uppercase text-black/60 mb-1">
+                  {{ t('about.design.col3_title') }}
+                </div>
+                <div class="text-xs font-black text-black mb-2">
+                  {{ t('about.design.col3_tools') }}
+                </div>
+                <p class="text-[11px] text-stone-800 leading-relaxed font-medium">
+                  {{ t('about.design.col3_desc') }}
+                </p>
+              </div>
+            </div>
+
+            <!-- PILLAR 4: CMS THEMING & PATCHES -->
+            <div class="bg-white/80 border-2 border-black p-4 flex flex-col justify-between shadow-sm">
+              <div>
+                <div class="text-[10px] font-black uppercase text-black/60 mb-1">
+                  {{ t('about.design.col4_title') }}
+                </div>
+                <div class="text-xs font-black text-black mb-2">
+                  {{ t('about.design.col4_tools') }}
+                </div>
+                <p class="text-[11px] text-stone-800 leading-relaxed font-medium">
+                  {{ t('about.design.col4_desc') }}
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <p class="font-mono text-[11px] text-black/80 font-bold border-t border-black/20 pt-3 mt-4">
-          {{ t('about.design.footnote') }}
-        </p>
+        <div class="border-t-2 border-black/20 pt-4 mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-[11px] text-black font-bold">
+          <div>
+            {{ t('about.design.footnote') }}
+          </div>
+          <div class="text-[10px] uppercase font-black tracking-widest text-black/70">
+            FIGMA ➔ CODE FLOW
+          </div>
+        </div>
       </div>
 
     </div>
