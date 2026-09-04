@@ -98,36 +98,42 @@ const productSkills = computed(() => {
         </div>
       </div>
 
-      <!-- STATS -->
+      <!-- CORE PROFILE -->
       <div class="bg-primary text-black border-4 border-black shadow-lg p-6 flex flex-col justify-between">
         <div class="font-mono">
-          <div class="text-[10px] uppercase font-bold text-black/60 mb-2">
+          <div class="text-[10px] uppercase font-bold text-black/60 mb-3">
             {{ t('about.stats.tag') }}
           </div>
           <div class="space-y-4">
-            <div>
-              <div class="text-4xl font-black leading-none">500+</div>
-              <div class="text-xs font-bold uppercase tracking-wider">
-                {{ t('about.stats.hours') }}
+            <div class="border-b-2 border-black/15 pb-3">
+              <div class="font-display text-4xl sm:text-5xl font-black leading-none text-black">
+                {{ t('about.stats.item1_val') }}
+              </div>
+              <div class="text-xs font-bold uppercase tracking-wider mt-1 text-black">
+                {{ t('about.stats.item1_lbl') }}
+              </div>
+            </div>
+            <div class="border-b-2 border-black/15 pb-3">
+              <div class="font-display text-2xl sm:text-3xl font-black tracking-wide leading-none text-black">
+                {{ t('about.stats.item2_val') }}
+              </div>
+              <div class="text-xs font-bold uppercase tracking-wider mt-1 text-black">
+                {{ t('about.stats.item2_lbl') }}
               </div>
             </div>
             <div>
-              <div class="text-4xl font-black leading-none">2</div>
-              <div class="text-xs font-bold uppercase tracking-wider">
-                {{ t('about.stats.monoliths') }}
+              <div class="font-display text-2xl sm:text-3xl font-black tracking-wide leading-none text-black">
+                {{ t('about.stats.item3_val') }}
               </div>
-            </div>
-            <div>
-              <div class="text-4xl font-black leading-none">5+</div>
-              <div class="text-xs font-bold uppercase tracking-wider">
-                {{ t('about.stats.designYears') }}
+              <div class="text-xs font-bold uppercase tracking-wider mt-1 text-black">
+                {{ t('about.stats.item3_lbl') }}
               </div>
             </div>
           </div>
         </div>
 
         <div
-          class="bg-black text-white p-3 border-2 border-black font-mono text-xs uppercase text-center font-bold tracking-wider"
+          class="bg-black text-white p-2.5 border-2 border-black font-mono text-[11px] uppercase text-center font-bold tracking-wider mt-6"
         >
           {{ t('about.stats.status') }}
         </div>
