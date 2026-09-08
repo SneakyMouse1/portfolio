@@ -320,17 +320,13 @@ const nextProject = computed(() => {
               </div>
 
               <div class="border-t-2 border-black/10 pt-3 space-y-2 font-mono text-xs text-stone-600">
-                <div class="flex justify-between items-center">
-                  <span class="uppercase text-stone-500">{{ t('project.statusLabel') }}</span>
-                  <span class="font-bold text-black">{{ t('project.statusValue') }}</span>
+                <div v-if="getLocalizedField(project, 'Location')" class="flex justify-between items-baseline gap-4">
+                  <span class="uppercase text-stone-500 shrink-0">{{ t('project.locationLabel') }}</span>
+                  <span class="font-bold text-black text-right">{{ getLocalizedField(project, 'Location') }}</span>
                 </div>
-                <div v-if="getLocalizedField(project, 'Location')" class="flex justify-between items-center">
-                  <span class="uppercase text-stone-500">{{ t('project.locationLabel') }}</span>
-                  <span class="font-bold text-black">{{ getLocalizedField(project, 'Location') }}</span>
-                </div>
-                <div v-if="project.Year" class="flex justify-between items-center">
-                  <span class="uppercase text-stone-500">{{ t('project.yearLabel') }}</span>
-                  <span class="font-bold text-black">{{ project.Year?.substring(0, 4) }}</span>
+                <div v-if="project.Year" class="flex justify-between items-baseline gap-4">
+                  <span class="uppercase text-stone-500 shrink-0">{{ t('project.yearLabel') }}</span>
+                  <span class="font-bold text-black text-right">{{ project.Year?.substring(0, 4) }}</span>
                 </div>
               </div>
             </div>
