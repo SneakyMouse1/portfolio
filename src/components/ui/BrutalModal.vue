@@ -25,7 +25,7 @@ watch(() => props.isOpen, (newValue) => {
 
       <div class="bg-white border-4 border-black shadow-xl w-full max-w-3xl p-6 relative flex flex-col max-h-[90vh]">
 
-        <button @click="$emit('close')" class="absolute -top-4 -right-4 bg-brutal-red text-white border-4 border-black w-10 h-10 flex items-center justify-center font-mono font-black text-lg shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all cursor-pointer z-10">
+        <button @click="$emit('close')" class="absolute -top-4 -right-4 bg-brutal-red text-white border-4 border-black w-10 h-10 flex items-center justify-center font-mono font-black text-lg shadow-sm brutal-press z-10">
           ✕
         </button>
 

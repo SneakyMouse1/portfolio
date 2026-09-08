@@ -97,7 +97,7 @@ onUnmounted(() => {
           >
             EN
           </button>
-          <div class="w-[2px] h-4 bg-black"></div>
+          <div class="w-0.5 h-4 bg-black"></div>
           <button
             @click="setLang('es')"
             type="button"

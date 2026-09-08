@@ -80,3 +80,31 @@ h6 {
     box-shadow: none !important;
   }
 }
+
+@utility brutal-press {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translate(2px, 2px);
+    box-shadow: none !important;
+  }
+
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none !important;
+  }
+}
+
+@utility brutal-lift {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-lg) !important;
+  }
+
+  &:active {
+    transform: translate(0, 0);
+  }
+}

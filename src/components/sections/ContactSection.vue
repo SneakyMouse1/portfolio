@@ -132,7 +132,7 @@ const handleSubmit = async () => {
         <div class="flex flex-col gap-3 font-mono text-xs font-black uppercase">
 
           <a href="https://wa.me/34663737463" target="_blank" rel="noreferrer"
-            class="flex items-center justify-between bg-brutal-green hover:bg-black hover:text-white border-2 border-black p-3.5 shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+            class="flex items-center justify-between bg-brutal-green hover:bg-black hover:text-white border-2 border-black p-3.5 shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
             <span class="flex items-center gap-2">
               <AkWhatsappFill class="w-5 h-5" />
               WHATSAPP: +34 663 737 463
@@ -141,7 +141,7 @@ const handleSubmit = async () => {
           </a>
 
           <a href="https://t.me/sneaky_mouse" target="_blank" rel="noreferrer"
-            class="flex items-center justify-between bg-brutal-blue hover:bg-black hover:text-white border-2 border-black p-3.5 shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+            class="flex items-center justify-between bg-brutal-blue hover:bg-black hover:text-white border-2 border-black p-3.5 shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
             <span class="flex items-center gap-2">
               <AkTelegramFill class="w-5 h-5" />
               TELEGRAM: @sneaky_mouse
@@ -168,9 +168,10 @@ const handleSubmit = async () => {
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <BrutalInput v-model="formData.name" :label="t('contact.nameLabel')" :placeholder="t('contact.namePlaceholder')" required />
-          <BrutalInput v-model="formData.email" type="email" :label="t('contact.emailLabel')" :placeholder="t('contact.emailPlaceholder')"
-            required />
+          <BrutalInput v-model="formData.name" :label="t('contact.nameLabel')"
+            :placeholder="t('contact.namePlaceholder')" required />
+          <BrutalInput v-model="formData.email" type="email" :label="t('contact.emailLabel')"
+            :placeholder="t('contact.emailPlaceholder')" required />
         </div>
 
         <BrutalSelect v-model="formData.serviceType" :label="t('contact.serviceLabel')" :options="serviceOptions"

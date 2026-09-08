@@ -51,7 +51,7 @@ const isCommercial = computed(() => {
           :href="project.realURL"
           target="_blank"
           rel="noreferrer"
-          class="bg-primary text-black border-2 border-black p-2 flex items-center justify-center shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] transition-all cursor-pointer"
+          class="bg-primary text-black border-2 border-black p-2 flex items-center justify-center shadow-sm brutal-press"
           :title="t('portfolio.liveSite')"
           @click.stop
         >
@@ -63,7 +63,7 @@ const isCommercial = computed(() => {
           :href="project.GithubURL"
           target="_blank"
           rel="noreferrer"
-          class="bg-white text-black border-2 border-black p-2 flex items-center justify-center shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] transition-all cursor-pointer"
+          class="bg-white text-black border-2 border-black p-2 flex items-center justify-center shadow-sm brutal-press"
           :title="t('portfolio.github')"
           @click.stop
         >
@@ -73,21 +73,21 @@ const isCommercial = computed(() => {
     </div>
 
     <div class="grow">
-      <!-- TOP META ROW: CATEGORY + YEAR -->
-      <div class="flex items-center justify-between gap-2 mb-2.5">
+      <!-- CATEGORY & YEAR BADGES -->
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <span
-          class="inline-flex items-center gap-1.5 font-mono text-xs uppercase font-black text-black bg-white border-2 border-black px-2.5 py-1 shadow-[2px_2px_0px_#000] shrink-0"
+          class="inline-flex items-center gap-1.5 font-mono text-xs uppercase font-black text-black bg-white border-2 border-black px-2.5 py-1 shadow-sm shrink-0"
         >
           <span
             class="w-2 h-2 rounded-full shrink-0"
-            :class="isCommercial ? 'bg-emerald-500' : 'bg-brutal-blue'"
+            :class="/commercial/i.test(project.Category || '') ? 'bg-emerald-500' : 'bg-brutal-blue'"
           ></span>
           <span>{{ getLocalizedField(project, 'Category') || 'PROJECT' }}</span>
         </span>
 
         <span
           v-if="project.Year"
-          class="font-mono text-xs font-black text-black bg-stone-100 border-2 border-black px-2 py-1 shadow-[2px_2px_0px_#000] shrink-0"
+          class="font-mono text-xs font-black text-black bg-stone-100 border-2 border-black px-2 py-1 shadow-sm shrink-0"
         >
           {{ project.Year?.substring(0, 4) }}
         </span>

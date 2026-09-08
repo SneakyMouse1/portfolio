@@ -66,8 +66,7 @@ const clientPoints3 = computed(() => {
 
     <div class="mb-8">
       <span
-        class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2"
-      >
+        class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2">
         {{ t('about.badge') }}
       </span>
       <h2 class="text-3xl sm:text-4xl font-display uppercase text-black tracking-wide">
@@ -148,8 +147,7 @@ const clientPoints3 = computed(() => {
         </div>
 
         <div
-          class="bg-black text-white p-2.5 border-2 border-black font-mono text-[11px] uppercase text-center font-bold tracking-wider mt-6"
-        >
+          class="bg-black text-white p-2.5 border-2 border-black font-mono text-[11px] uppercase text-center font-bold tracking-wider mt-6">
           {{ t('about.stats.status') }}
         </div>
       </div>
@@ -157,14 +155,14 @@ const clientPoints3 = computed(() => {
       <!-- ROW 2: FREELANCE & CLIENT FOOTPRINT (3 CARDS, 1 COL EACH) -->
       <!-- CARD 1: CROSS-BORDER CLIENTS -->
       <div
-        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
-      >
+        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
         <div>
           <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
             <h3 class="font-display text-xl uppercase text-black tracking-wide">
               {{ t('about.clientWork.card1_title') }}
             </h3>
-            <span class="font-mono text-xs bg-brutal-teal text-black border-2 border-black px-2 py-0.5 font-bold uppercase">
+            <span
+              class="font-mono text-xs bg-brutal-teal text-black border-2 border-black px-2 py-0.5 font-bold uppercase">
               {{ t('about.clientWork.card1_tag') }}
             </span>
           </div>
@@ -174,11 +172,8 @@ const clientPoints3 = computed(() => {
           </p>
 
           <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase font-bold">
-            <span
-              v-for="city in clientCities"
-              :key="city"
-              class="bg-stone-100 border border-black px-2 py-0.5 text-black"
-            >
+            <span v-for="city in clientCities" :key="city"
+              class="bg-stone-100 border border-black px-2 py-0.5 text-black">
               {{ city }}
             </span>
           </div>
@@ -191,14 +186,14 @@ const clientPoints3 = computed(() => {
 
       <!-- CARD 2: DIRECT COLLABORATION -->
       <div
-        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
-      >
+        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
         <div>
           <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
             <h3 class="font-display text-xl uppercase text-black tracking-wide">
               {{ t('about.clientWork.card2_title') }}
             </h3>
-            <span class="font-mono text-xs bg-brutal-orange text-white border-2 border-black px-2 py-0.5 font-bold uppercase">
+            <span
+              class="font-mono text-xs bg-brutal-orange text-white border-2 border-black px-2 py-0.5 font-bold uppercase">
               {{ t('about.clientWork.card2_tag') }}
             </span>
           </div>
@@ -208,11 +203,8 @@ const clientPoints3 = computed(() => {
           </p>
 
           <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase font-bold">
-            <span
-              v-for="point in clientPoints2"
-              :key="point"
-              class="bg-stone-100 border border-black px-2 py-0.5 text-black"
-            >
+            <span v-for="point in clientPoints2" :key="point"
+              class="bg-stone-100 border border-black px-2 py-0.5 text-black">
               {{ point }}
             </span>
           </div>
@@ -225,14 +217,14 @@ const clientPoints3 = computed(() => {
 
       <!-- CARD 3: PRAGMATIC DEV -->
       <div
-        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
-      >
+        class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
         <div>
           <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
             <h3 class="font-display text-xl uppercase text-black tracking-wide">
               {{ t('about.clientWork.card3_title') }}
             </h3>
-            <span class="font-mono text-xs bg-brutal-purple text-white border-2 border-black px-2 py-0.5 font-bold uppercase">
+            <span
+              class="font-mono text-xs bg-brutal-purple text-white border-2 border-black px-2 py-0.5 font-bold uppercase">
               {{ t('about.clientWork.card3_tag') }}
             </span>
           </div>
@@ -242,11 +234,8 @@ const clientPoints3 = computed(() => {
           </p>
 
           <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase font-bold">
-            <span
-              v-for="point in clientPoints3"
-              :key="point"
-              class="bg-stone-100 border border-black px-2 py-0.5 text-black"
-            >
+            <span v-for="point in clientPoints3" :key="point"
+              class="bg-stone-100 border border-black px-2 py-0.5 text-black">
               {{ point }}
             </span>
           </div>
@@ -259,8 +248,7 @@ const clientPoints3 = computed(() => {
 
       <!-- ROW 3: VISUAL DNA & INTERFACE IMPLEMENTATION (FULL WIDTH 3-COL CARD) -->
       <div
-        class="md:col-span-3 bg-brutal-pink text-black border-4 border-black shadow-lg p-6 sm:p-8 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
-      >
+        class="md:col-span-3 bg-brutal-pink text-black border-4 border-black shadow-lg p-6 sm:p-8 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
         <div>
           <div class="flex flex-wrap items-center justify-between border-b-2 border-black/20 pb-4 mb-5 gap-2">
             <div>
@@ -268,7 +256,8 @@ const clientPoints3 = computed(() => {
                 {{ t('about.design.title') }}
               </h3>
             </div>
-            <span class="font-mono text-xs bg-white text-black border-2 border-black px-2.5 py-1 font-black shadow-sm uppercase">
+            <span
+              class="font-mono text-xs bg-white text-black border-2 border-black px-2.5 py-1 font-black shadow-sm uppercase">
               {{ t('about.design.tag') }}
             </span>
           </div>
@@ -341,7 +330,8 @@ const clientPoints3 = computed(() => {
           </div>
         </div>
 
-        <div class="border-t-2 border-black/20 pt-4 mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-[11px] text-black font-bold">
+        <div
+          class="border-t-2 border-black/20 pt-4 mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-[11px] text-black font-bold">
           <div>
             {{ t('about.design.footnote') }}
           </div>
@@ -357,8 +347,7 @@ const clientPoints3 = computed(() => {
     <div class="mt-14 pt-10 border-t-4 border-black">
       <div class="mb-8">
         <span
-          class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2"
-        >
+          class="font-mono text-xs uppercase font-extrabold text-stone-600 bg-stone-100 border-2 border-black px-2 py-0.5 inline-block mb-2">
           {{ t('about.skillsMatrix.tag') }}
         </span>
         <h2 class="text-3xl sm:text-4xl font-display uppercase text-black tracking-wide">
@@ -372,8 +361,7 @@ const clientPoints3 = computed(() => {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- FRONTEND ENGINEERING -->
         <div
-          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
-        >
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
@@ -383,18 +371,14 @@ const clientPoints3 = computed(() => {
                 </h3>
               </div>
               <span
-                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase"
-              >
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
                 CORE_DEV
               </span>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                v-for="skill in frontendSkills"
-                :key="skill"
-                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none"
-              >
+              <span v-for="skill in frontendSkills" :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
                 {{ skill }}
               </span>
             </div>
@@ -403,8 +387,7 @@ const clientPoints3 = computed(() => {
 
         <!-- UI SYSTEMS & STYLING -->
         <div
-          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
-        >
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
@@ -414,18 +397,14 @@ const clientPoints3 = computed(() => {
                 </h3>
               </div>
               <span
-                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase"
-              >
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
                 DESIGN_SYS
               </span>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                v-for="skill in uiSkills"
-                :key="skill"
-                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none"
-              >
+              <span v-for="skill in uiSkills" :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
                 {{ skill }}
               </span>
             </div>
@@ -434,8 +413,7 @@ const clientPoints3 = computed(() => {
 
         <!-- BACKEND & DATABASES -->
         <div
-          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
-        >
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
@@ -445,18 +423,14 @@ const clientPoints3 = computed(() => {
                 </h3>
               </div>
               <span
-                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase"
-              >
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
                 SERVER_DATA
               </span>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                v-for="skill in backendSkills"
-                :key="skill"
-                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none"
-              >
+              <span v-for="skill in backendSkills" :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
                 {{ skill }}
               </span>
             </div>
@@ -465,8 +439,7 @@ const clientPoints3 = computed(() => {
 
         <!-- PRODUCT DELIVERY & SOFT SKILLS -->
         <div
-          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-150"
-        >
+          class="bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
           <div>
             <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
               <div class="flex items-center gap-2">
@@ -476,18 +449,14 @@ const clientPoints3 = computed(() => {
                 </h3>
               </div>
               <span
-                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase"
-              >
+                class="font-mono text-[10px] bg-stone-100 text-black border-2 border-black px-2 py-0.5 font-extrabold uppercase">
                 PROCESS_UX
               </span>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                v-for="skill in productSkills"
-                :key="skill"
-                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none"
-              >
+              <span v-for="skill in productSkills" :key="skill"
+                class="bg-stone-50 hover:bg-black hover:text-white text-black border-2 border-black px-2.5 py-1 font-mono text-xs font-bold transition-colors cursor-default select-none">
                 {{ skill }}
               </span>
             </div>
