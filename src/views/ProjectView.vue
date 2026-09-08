@@ -122,7 +122,7 @@ const nextProject = computed(() => {
       <!-- TOP BREADCRUMB / BACK LINK -->
       <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
         <RouterLink :to="localePath('/#portfolio-block')"
-          class="inline-flex items-center gap-2 font-mono text-xs uppercase font-extrabold bg-white border-3 border-black px-3.5 py-2 shadow-sm hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-md active:translate-x-0 active:translate-y-0 transition-all select-none">
+          class="inline-flex items-center gap-2 font-mono text-xs uppercase font-extrabold bg-white border-3 border-black px-3.5 py-2 shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md active:translate-0 transition-all select-none">
           <BxArrowBack class="w-4 h-4" />
           <span>{{ t('project.back') }}</span>
         </RouterLink>
@@ -159,7 +159,7 @@ const nextProject = computed(() => {
         </p>
         <div>
           <RouterLink :to="localePath('/#portfolio-block')"
-            class="inline-block bg-primary text-black font-mono text-xs uppercase font-black border-3 border-black px-6 py-3 shadow-md hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-sm transition-all">
+            class="inline-block bg-primary text-black font-mono text-xs uppercase font-black border-3 border-black px-6 py-3 shadow-md hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-sm transition-all">
             {{ t('project.returnToPortfolio') }}
           </RouterLink>
         </div>
@@ -172,12 +172,9 @@ const nextProject = computed(() => {
         <header class="border-b-4 border-black pb-8">
           <div class="flex flex-wrap items-center gap-3 mb-4">
             <span
-              class="inline-flex items-center gap-1.5 font-mono text-xs uppercase font-black text-black bg-white border-2 border-black px-3 py-1 shadow-[2px_2px_0px_#000]"
-            >
-              <span
-                class="w-2 h-2 rounded-full shrink-0"
-                :class="/commercial/i.test(project.Category || '') ? 'bg-emerald-500' : 'bg-brutal-blue'"
-              ></span>
+              class="inline-flex items-center gap-1.5 font-mono text-xs uppercase font-black text-black bg-white border-2 border-black px-3 py-1 shadow-sm">
+              <span class="w-2 h-2 rounded-full shrink-0"
+                :class="/commercial/i.test(project.Category || '') ? 'bg-emerald-500' : 'bg-brutal-blue'"></span>
               <span>{{ getLocalizedField(project, 'Category') || 'PROJECT_RECORD' }}</span>
             </span>
 
@@ -209,13 +206,13 @@ const nextProject = computed(() => {
             <!-- ACTION BUTTONS -->
             <div class="flex flex-wrap gap-3">
               <a v-if="project.realURL" :href="project.realURL" target="_blank" rel="noreferrer"
-                class="bg-primary text-black font-mono text-xs uppercase font-black border-3 border-black px-4 py-2.5 flex items-center gap-2 shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all select-none">
+                class="bg-primary text-black font-mono text-xs uppercase font-black border-3 border-black px-4 py-2.5 flex items-center gap-2 shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all select-none">
                 <AkGlobe class="w-4 h-4" />
                 <span>{{ t('project.visitLive') }}</span>
               </a>
 
               <a v-if="project.GithubURL" :href="project.GithubURL" target="_blank" rel="noreferrer"
-                class="bg-white text-black font-mono text-xs uppercase font-black border-3 border-black px-4 py-2.5 flex items-center gap-2 shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all select-none">
+                class="bg-white text-black font-mono text-xs uppercase font-black border-3 border-black px-4 py-2.5 flex items-center gap-2 shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all select-none">
                 <AkGithubFill class="w-4 h-4" />
                 <span>{{ t('project.githubRepo') }}</span>
               </a>
@@ -225,14 +222,23 @@ const nextProject = computed(() => {
 
         <!-- IMAGE SHOWCASE GALLERY -->
         <section v-if="projectImages.length"
-          class="border-4 border-black bg-stone-100 shadow-xl overflow-hidden relative">
-          <swiper :key="project.id" :modules="swiperModules" :slides-per-view="1" :navigation="projectImages.length > 1"
-            :pagination="{ clickable: true }" :autoplay="{ delay: 5000, disableOnInteraction: true }"
-            class="w-full aspect-video md:aspect-[16/9] max-h-[640px]">
+          class="border-4 border-black bg-stone-950 shadow-xl overflow-hidden relative">
+          <swiper :key="`${project.id}-${projectImages.length}`" :modules="swiperModules" :slides-per-view="1"
+            :loop="projectImages.length > 1" :navigation="projectImages.length > 1" :pagination="{ clickable: true }"
+            :autoplay="{ delay: 5000, disableOnInteraction: true }"
+            class="w-full aspect-4/3 sm:aspect-16/10 max-h-[80vh]">
             <swiper-slide v-for="(image, index) in projectImages" :key="index"
-              class="flex items-center justify-center bg-stone-900 overflow-hidden">
+              class="relative flex items-center justify-center bg-stone-950 overflow-hidden select-none">
+              <!-- Ambient blurred background for mixed aspect ratios -->
+              <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <img :src="image" alt="" aria-hidden="true"
+                  class="w-full h-full object-cover blur-2xl scale-110 opacity-35 brightness-75" />
+                <div class="absolute inset-0 bg-black/40"></div>
+              </div>
+
+              <!-- Main sharp image (never cropped) -->
               <img :src="image" :alt="`${project.Name} showcase ${index + 1}`"
-                class="w-full h-full object-contain md:object-cover" />
+                class="relative z-10 w-full h-full object-contain p-1 sm:p-2 md:p-3 drop-shadow-2xl" />
             </swiper-slide>
           </swiper>
         </section>
@@ -263,7 +269,7 @@ const nextProject = computed(() => {
               <div class="border-b-2 border-black/20 pb-3 mb-4 flex items-center justify-between">
                 <div>
                   <span class="font-mono text-[10px] uppercase font-bold text-stone-500 block">{{ t('project.sysSpecs')
-                    }}</span>
+                  }}</span>
                   <h3 class="font-display text-2xl uppercase tracking-wide">{{ t('project.coreStack') }}</h3>
                 </div>
                 <span class="font-mono text-[10px] font-bold bg-stone-100 border-2 border-black px-2 py-0.5 uppercase">
@@ -346,7 +352,7 @@ const nextProject = computed(() => {
         <!-- PREVIOUS / NEXT PROJECT PAGINATION -->
         <nav class="border-t-4 border-black pt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <RouterLink v-if="prevProject" :to="localePath(`/project/${prevProject.id}`)"
-            class="group bg-white border-4 border-black p-5 shadow-md hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-lg active:translate-x-0 active:translate-y-0 transition-all flex flex-col justify-between select-none">
+            class="group bg-white border-4 border-black p-5 shadow-md hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-lg active:translate-0 transition-all flex flex-col justify-between select-none">
             <div class="flex items-center gap-1 font-mono text-xs font-bold text-stone-500 uppercase mb-2">
               <BxChevronLeft class="w-4 h-4 text-black group-hover:-translate-x-1 transition-transform" />
               <span>{{ t('project.prevProject') }}</span>
@@ -359,7 +365,7 @@ const nextProject = computed(() => {
           <div v-else class="hidden sm:block"></div>
 
           <RouterLink v-if="nextProject" :to="localePath(`/project/${nextProject.id}`)"
-            class="group bg-white border-4 border-black p-5 shadow-md hover:translate-x-[2px] hover:translate-y-[-2px] hover:shadow-lg active:translate-x-0 active:translate-y-0 transition-all flex flex-col justify-between text-right select-none">
+            class="group bg-white border-4 border-black p-5 shadow-md hover:translate-x-0.5 hover:-translate-y-0.5 hover:shadow-lg active:translate-0 transition-all flex flex-col justify-between text-right select-none">
             <div class="flex items-center justify-end gap-1 font-mono text-xs font-bold text-stone-500 uppercase mb-2">
               <span>{{ t('project.nextProject') }}</span>
               <BxChevronRight class="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
