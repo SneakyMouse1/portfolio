@@ -23,6 +23,7 @@ import FooterGlobal from '@/components/global/FooterGlobal.vue';
 import BrutalButton from '@/components/ui/BrutalButton.vue';
 import SkeletonBox from '@/components/ui/SkeletonBox.vue';
 import { useI18n } from '@/composables/useI18n.js';
+import { slugify } from '@/utils/slugify.js';
 
 const route = useRoute();
 const router = useRouter(); 1
@@ -62,8 +63,8 @@ const loadProjects = async () => {
 };
 
 const findCurrentProject = () => {
-  const currentId = route.params.id;
-  const found = allProjects.value.find((p) => p.id === currentId);
+  const param = route.params.id;
+  const found = allProjects.value.find((p) => p.id === param || slugify(p.Name) === param.toLowerCase());
   if (found) {
     project.value = found;
   } else if (allProjects.value.length > 0) {
@@ -351,7 +352,7 @@ const nextProject = computed(() => {
 
         <!-- PREVIOUS / NEXT PROJECT PAGINATION -->
         <nav class="border-t-4 border-black pt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <RouterLink v-if="prevProject" :to="localePath(`/project/${prevProject.id}`)"
+          <RouterLink v-if="prevProject" :to="localePath(`/project/${slugify(prevProject.Name)}`)"
             class="group bg-white border-4 border-black p-5 shadow-md hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-lg active:translate-0 transition-all flex flex-col justify-between select-none">
             <div class="flex items-center gap-1 font-mono text-xs font-bold text-stone-500 uppercase mb-2">
               <BxChevronLeft class="w-4 h-4 text-black group-hover:-translate-x-1 transition-transform" />
@@ -364,7 +365,7 @@ const nextProject = computed(() => {
           </RouterLink>
           <div v-else class="hidden sm:block"></div>
 
-          <RouterLink v-if="nextProject" :to="localePath(`/project/${nextProject.id}`)"
+          <RouterLink v-if="nextProject" :to="localePath(`/project/${slugify(nextProject.Name)}`)"
             class="group bg-white border-4 border-black p-5 shadow-md hover:translate-x-0.5 hover:-translate-y-0.5 hover:shadow-lg active:translate-0 transition-all flex flex-col justify-between text-right select-none">
             <div class="flex items-center justify-end gap-1 font-mono text-xs font-bold text-stone-500 uppercase mb-2">
               <span>{{ t('project.nextProject') }}</span>

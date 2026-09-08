@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router';
 import { McLiveLocationFill, BsArrowUpRightSquareFill, AkGithubFill, AkGlobe } from '@kalimahapps/vue-icons';
 import BrutalButton from "@/components/ui/BrutalButton.vue";
 import { useI18n } from "@/composables/useI18n.js";
+import { slugify } from "@/utils/slugify.js";
 
 const props = defineProps({
   project: {
@@ -29,7 +30,7 @@ const isCommercial = computed(() => {
       class="border-4 border-border mb-4 overflow-hidden bg-stone-100 aspect-video relative group/img"
     >
       <RouterLink
-        :to="localePath(`/project/${project.id}`)"
+        :to="localePath(`/project/${slugify(project.Name)}`)"
         class="block w-full h-full cursor-pointer"
         :title="`Open case study for ${project.Name}`"
       >
@@ -94,7 +95,7 @@ const isCommercial = computed(() => {
       </div>
 
       <!-- PROJECT TITLE -->
-      <RouterLink :to="localePath(`/project/${project.id}`)" class="block">
+      <RouterLink :to="localePath(`/project/${slugify(project.Name)}`)" class="block">
         <h3 class="font-display text-2xl uppercase text-brutal-black tracking-wide hover:text-brutal-orange transition-colors">
           {{ project.Name }}
         </h3>
@@ -123,7 +124,7 @@ const isCommercial = computed(() => {
     <!-- PRIMARY ACTION BUTTON (FULL-WIDTH 100% UNIFORM ACROSS ALL CARDS) -->
     <div class="border-t-2 border-black/20 pt-4 mt-2">
       <BrutalButton
-        :to="localePath(`/project/${project.id}`)"
+        :to="localePath(`/project/${slugify(project.Name)}`)"
         bg-class="w-full bg-brutal-black text-brutal-white text-xs font-bold flex items-center justify-center gap-2 shadow-primary"
       >
         {{ t('portfolio.caseStudy') }} <BsArrowUpRightSquareFill class="w-3.5 h-3.5" />
