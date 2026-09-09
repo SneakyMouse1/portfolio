@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home (English) -->
+  <url>
+    <loc>https://smyslov.dev/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Home (Spanish) -->
+  <url>
+    <loc>https://smyslov.dev/es</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Case Study: NidoReal -->
+  <url>
+    <loc>https://smyslov.dev/project/nidoreal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/nidoreal" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/nidoreal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/nidoreal" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smyslov.dev/es/project/nidoreal</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/nidoreal" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/nidoreal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/nidoreal" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Case Study: Monkey Tour -->
+  <url>
+    <loc>https://smyslov.dev/project/monkey-tour</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/monkey-tour" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/monkey-tour" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/monkey-tour" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smyslov.dev/es/project/monkey-tour</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/monkey-tour" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/monkey-tour" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/monkey-tour" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Case Study: Bessó Cosmetics -->
+  <url>
+    <loc>https://smyslov.dev/project/besso-cosmetics</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/besso-cosmetics" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/besso-cosmetics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/besso-cosmetics" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smyslov.dev/es/project/besso-cosmetics</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/besso-cosmetics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/besso-cosmetics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/besso-cosmetics" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Case Study: Bosque Nórdico -->
+  <url>
+    <loc>https://smyslov.dev/project/bosque-nordico</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/bosque-nordico" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/bosque-nordico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/bosque-nordico" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smyslov.dev/es/project/bosque-nordico</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/bosque-nordico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/bosque-nordico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/bosque-nordico" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Case Study: SGS Dental UA -->
+  <url>
+    <loc>https://smyslov.dev/project/sgs-dental-ua</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/sgs-dental-ua" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/sgs-dental-ua" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/sgs-dental-ua" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smyslov.dev/es/project/sgs-dental-ua</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/sgs-dental-ua" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/sgs-dental-ua" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/sgs-dental-ua" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Case Study: Migeola -->
+  <url>
+    <loc>https://smyslov.dev/project/migeola</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/migeola" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/migeola" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/migeola" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smyslov.dev/es/project/migeola</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/migeola" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/migeola" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/migeola" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Case Study: Bessó MetalWork -->
+  <url>
+    <loc>https://smyslov.dev/project/besso-metalwork</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/besso-metalwork" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/besso-metalwork" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/besso-metalwork" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smyslov.dev/es/project/besso-metalwork</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smyslov.dev/es/project/besso-metalwork" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://smyslov.dev/project/besso-metalwork" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smyslov.dev/project/besso-metalwork" />
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
