@@ -8,36 +8,40 @@ const frontendSkills = [
   'React',
   'JavaScript (ES6+)',
   'TypeScript',
-  'Responsive Web Design',
+  'Tailwind CSS',
+  'Alpine.js',
+  'Astro',
+  'GSAP & Lenis',
+  'HTML5 & SCSS',
   'Component Architecture',
-  'State Management',
-  'REST API Integration',
-  'Form Validation',
-  'Performance Optimization'
+  'REST API Integration'
 ];
 
 const uiSkills = [
-  'Tailwind CSS',
+  'Tailwind CSS v4',
+  'Figma & FigJam',
   'Design Systems',
-  'Component Libraries',
+  'UI/UX Prototyping',
+  'Adobe Illustrator',
+  'Adobe Photoshop',
   'Design Tokens',
-  'Theming & Dark Mode',
-  'Figma-to-Code Workflow',
   'Micro-Animations',
-  'Cross-Browser Consistency',
-  'Accessibility (WCAG)'
+  'WCAG Accessibility'
 ];
 
 const backendSkills = [
-  'Laravel Monoliths',
   'PHP',
+  'Laravel',
+  'Blade',
+  'Filament Admin',
+  'RESTful APIs',
+  'Sanctum & JWT',
   'PostgreSQL',
-  'PL/pgSQL',
-  'REST API Blueprinting',
-  'Filament Administration',
-  'ERP Web Services',
-  'Postman API Testing',
-  'WordPress / PHP Patches'
+  'PL/pgSQL Triggers',
+  'MySQL',
+  'Docker & Coolify',
+  'Postman & Bruno',
+  'WordPress & WooCommerce'
 ];
 
 const productSkills = computed(() => {
@@ -243,6 +247,120 @@ const clientPoints3 = computed(() => {
 
         <div class="border-t-2 border-black/10 pt-3 mt-4 text-[10px] font-mono text-stone-500 uppercase font-bold">
           {{ t('about.clientWork.card3_footer') }}
+        </div>
+      </div>
+
+      <!-- ROW 2.5: FORMAL EDUCATION & LANGUAGES -->
+      <!-- CARD: FORMAL EDUCATION (2 COLS) -->
+      <div
+        class="md:col-span-2 bg-white border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
+        <div>
+          <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
+            <h3 class="font-display text-xl uppercase text-black tracking-wide">
+              {{ t('about.education.title') }}
+            </h3>
+            <span
+              class="font-mono text-xs bg-brutal-blue text-white border-2 border-black px-2 py-0.5 font-bold uppercase">
+              {{ t('about.education.tag') }}
+            </span>
+          </div>
+
+          <div class="space-y-3.5 font-mono">
+            <!-- DAW -->
+            <div class="border-b border-black/15 pb-3">
+              <div class="text-xs font-black text-black">
+                {{ t('about.education.item1_title') }}
+              </div>
+              <div class="text-[11px] font-bold text-stone-600 mb-1">
+                {{ t('about.education.item1_sub') }}
+              </div>
+              <div class="text-[11px] text-stone-700 leading-relaxed font-medium">
+                {{ t('about.education.item1_desc') }}
+              </div>
+            </div>
+
+            <!-- MASTER MMDI -->
+            <div class="border-b border-black/15 pb-3">
+              <div class="text-xs font-black text-black">
+                {{ t('about.education.item2_title') }}
+              </div>
+              <div class="text-[11px] font-bold text-stone-600 mb-1">
+                {{ t('about.education.item2_sub') }}
+              </div>
+              <div class="text-[11px] text-stone-700 leading-relaxed font-medium">
+                {{ t('about.education.item2_desc') }}
+              </div>
+            </div>
+
+            <!-- DEGREE -->
+            <div>
+              <div class="text-xs font-black text-black">
+                {{ t('about.education.item3_title') }}
+              </div>
+              <div class="text-[11px] font-bold text-stone-600 mb-1">
+                {{ t('about.education.item3_sub') }}
+              </div>
+              <div class="text-[11px] text-stone-700 leading-relaxed font-medium">
+                {{ t('about.education.item3_desc') }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t-2 border-black/10 pt-3 mt-4 text-[10px] font-mono text-stone-500 uppercase font-bold">
+          ● OFICIAL · DESARROLLO DE APLICACIONES WEB (DAW) · ALICANTE
+        </div>
+      </div>
+
+      <!-- CARD: LANGUAGES & COMMUNICATION (1 COL) -->
+      <div
+        class="bg-stone-50 border-4 border-black shadow-lg p-6 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-150">
+        <div>
+          <div class="flex items-center justify-between border-b-2 border-black/20 pb-3 mb-4">
+            <h3 class="font-display text-xl uppercase text-black tracking-wide">
+              {{ t('about.languages.title') }}
+            </h3>
+            <span
+              class="font-mono text-xs bg-primary text-black border-2 border-black px-2 py-0.5 font-bold uppercase">
+              {{ t('about.languages.tag') }}
+            </span>
+          </div>
+
+          <div class="space-y-3 font-mono">
+            <div class="bg-white border-2 border-black p-2.5 shadow-sm">
+              <div class="flex items-center justify-between text-xs font-black text-black mb-0.5">
+                <span>🇪🇸 {{ t('about.languages.item1_lang') }}</span>
+                <span class="text-[10px] bg-primary text-black px-1.5 py-0.5 border border-black font-extrabold">B2</span>
+              </div>
+              <div class="text-[10px] text-stone-600 font-bold">
+                {{ t('about.languages.item1_level') }}
+              </div>
+            </div>
+
+            <div class="bg-white border-2 border-black p-2.5 shadow-sm">
+              <div class="flex items-center justify-between text-xs font-black text-black mb-0.5">
+                <span>🇬🇧 {{ t('about.languages.item2_lang') }}</span>
+                <span class="text-[10px] bg-brutal-blue text-white px-1.5 py-0.5 border border-black font-extrabold">B2</span>
+              </div>
+              <div class="text-[10px] text-stone-600 font-bold">
+                {{ t('about.languages.item2_level') }}
+              </div>
+            </div>
+
+            <div class="bg-white border-2 border-black p-2.5 shadow-sm">
+              <div class="flex items-center justify-between text-xs font-black text-black mb-0.5">
+                <span>🇷🇺 {{ t('about.languages.item3_lang') }}</span>
+                <span class="text-[10px] bg-brutal-green text-black px-1.5 py-0.5 border border-black font-extrabold">NATIVO</span>
+              </div>
+              <div class="text-[10px] text-stone-600 font-bold">
+                {{ t('about.languages.item3_level') }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t-2 border-black/10 pt-3 mt-4 text-[10px] font-mono text-stone-600 font-bold leading-tight">
+          {{ t('about.languages.footer') }}
         </div>
       </div>
 

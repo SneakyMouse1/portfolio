@@ -76,13 +76,18 @@ const { t } = useI18n();
         {{ t('hero.bio') }}
       </p>
 
-      <!-- DUAL CALL TO ACTION -->
+      <!-- CALL TO ACTION -->
       <div class="flex flex-wrap items-center justify-center gap-3.5 pointer-events-auto mt-2">
         <BrutalButton bg-class="bg-primary text-black font-black shadow-md hover:shadow-lg" href="#portfolio-block">
           {{ t('hero.explore') }} ↗
         </BrutalButton>
 
-        <BrutalButton bg-class="bg-white text-black font-black shadow-md hover:shadow-lg" href="#contact-block">
+        <BrutalButton bg-class="bg-white text-black font-black shadow-md hover:shadow-lg"
+          href="/Semyon_Smyslov_Fullstack_ES.pdf" target="_blank" download="Semyon_Smyslov_Fullstack_ES.pdf">
+          {{ t('hero.downloadCv') }} ↓
+        </BrutalButton>
+
+        <BrutalButton bg-class="bg-black text-white font-black shadow-md hover:shadow-lg" href="#contact-block">
           {{ t('hero.contact') }} ✉
         </BrutalButton>
       </div>

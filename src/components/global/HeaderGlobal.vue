@@ -109,6 +109,18 @@ onUnmounted(() => {
           </button>
         </div>
 
+        <!-- CV DOWNLOAD BUTTON -->
+        <a
+          href="/Semyon_Smyslov_Fullstack_ES.pdf"
+          target="_blank"
+          download="Semyon_Smyslov_Fullstack_ES.pdf"
+          class="inline-flex items-center gap-1 border-2 border-black bg-white hover:bg-black hover:text-white px-2 sm:px-2.5 py-1 md:py-1.5 font-mono text-[11px] md:text-xs font-black uppercase shadow-sm transition-all active:translate-x-0.5 active:translate-y-0.5 select-none"
+          :title="t('nav.downloadCv')"
+        >
+          <span>CV</span>
+          <span>↓</span>
+        </a>
+
         <!-- DESKTOP LET'S TALK BUTTON -->
         <div class="hidden md:block">
           <BrutalButton
@@ -189,6 +201,15 @@ onUnmounted(() => {
         >
           {{ t('nav.contact') }}
         </button>
+        <a
+          href="/Semyon_Smyslov_Fullstack_ES.pdf"
+          target="_blank"
+          download="Semyon_Smyslov_Fullstack_ES.pdf"
+          class="w-full text-left py-2 px-3 border-2 border-black bg-stone-100 hover:bg-black hover:text-white transition-colors cursor-pointer shadow-sm active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-between"
+        >
+          <span>{{ t('nav.downloadCv') }}</span>
+          <span>↓ PDF</span>
+        </a>
         <button
           @click="handleNavClick('contact-block')"
           class="w-full text-center py-2 px-3 border-2 border-black bg-primary text-black hover:bg-primary-hover transition-colors cursor-pointer shadow-sm font-black mt-1 active:translate-x-0.5 active:translate-y-0.5"

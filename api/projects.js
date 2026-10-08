@@ -9,7 +9,12 @@ export default async function handler(request, response) {
   }
 
   try {
-    const data = await airtableFetch()
+    let data
+    try {
+      data = await airtableFetch('?view=Portfolio%20data')
+    } catch {
+      data = await airtableFetch()
+    }
     return response.status(200).json(data)
   } catch (error) {
     console.error('[api/projects] error:', error.message)
