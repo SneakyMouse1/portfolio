@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import BrutalInput from "@/components/ui/Inputs/BrutalInput.vue";
 import BrutalSelect from "@/components/ui/Inputs/BrutalSelect.vue";
 import BrutalTextarea from "@/components/ui/Inputs/BrutalTextarea.vue";
@@ -21,6 +21,7 @@ const isSubmitting = ref(false);
 const submitStatus = ref(null); // null | 'success' | 'error'
 const turnstileToken = ref(null);
 let turnstileWidgetId = null;
+let turnstilePollTimer = null;
 
 const serviceOptions = computed(() => {
   const list = t('contact.serviceOptions');
@@ -28,38 +29,83 @@ const serviceOptions = computed(() => {
 });
 
 onMounted(() => {
+  if (window.turnstile) {
+    renderTurnstile();
+    return;
+  }
+
   // Wait for Turnstile script to load
-  const checkTurnstile = setInterval(() => {
+  turnstilePollTimer = setInterval(() => {
     if (window.turnstile) {
-      clearInterval(checkTurnstile);
+      clearInterval(turnstilePollTimer);
+      turnstilePollTimer = null;
       renderTurnstile();
     }
   }, 100);
 
   // Stop polling after 10 seconds
-  setTimeout(() => clearInterval(checkTurnstile), 10000);
+  setTimeout(() => {
+    if (turnstilePollTimer) {
+      clearInterval(turnstilePollTimer);
+      turnstilePollTimer = null;
+    }
+  }, 10000);
+});
+
+onBeforeUnmount(() => {
+  if (turnstilePollTimer) {
+    clearInterval(turnstilePollTimer);
+    turnstilePollTimer = null;
+  }
+  if (turnstileWidgetId !== null && window.turnstile) {
+    try {
+      window.turnstile.remove(turnstileWidgetId);
+    } catch (e) {
+      console.warn('[ContactForm] Error removing Turnstile widget:', e);
+    }
+    turnstileWidgetId = null;
+  }
 });
 
 const renderTurnstile = () => {
   const container = document.getElementById('cf-turnstile-container');
   if (!container || !window.turnstile) return;
 
-  turnstileWidgetId = window.turnstile.render(container, {
-    sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY,
-    callback: (token) => {
-      turnstileToken.value = token;
-    },
-    'expired-callback': () => {
-      turnstileToken.value = null;
-    },
-    'error-callback': () => {
-      turnstileToken.value = null;
-    },
-  });
+  const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY || '0x4AAAAAADrcANSnd95aZSy_';
+  if (!sitekey) {
+    console.error('[ContactForm] Missing Turnstile sitekey');
+    return;
+  }
+
+  if (turnstileWidgetId !== null) return;
+
+  try {
+    turnstileWidgetId = window.turnstile.render(container, {
+      sitekey,
+      theme: 'light',
+      callback: (token) => {
+        turnstileToken.value = token;
+      },
+      'expired-callback': () => {
+        turnstileToken.value = null;
+      },
+      'error-callback': () => {
+        turnstileToken.value = null;
+      },
+    });
+  } catch (err) {
+    console.error('[ContactForm] Failed to render Turnstile:', err);
+  }
 };
 
 const handleSubmit = async () => {
   if (!formData.value.name || !formData.value.email || !formData.value.message || !formData.value.acceptTerms) {
+    return;
+  }
+
+  if (!turnstileToken.value) {
+    console.warn('[ContactForm] Turnstile token missing. Please complete verification.');
+    submitStatus.value = 'error';
     return;
   }
 
@@ -99,6 +145,9 @@ const handleSubmit = async () => {
       console.error('[ContactForm] Server error:', response.status, errData);
       submitStatus.value = 'error';
       turnstileToken.value = null;
+      if (turnstileWidgetId !== null && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetId);
+      }
     }
 
   } catch (e) {
@@ -202,7 +251,7 @@ const handleSubmit = async () => {
           ✕ {{ t('contact.errorTitle') }} — {{ t('contact.errorDesc') }}
         </div>
 
-        <div id="cf-turnstile-container"></div>
+        <div id="cf-turnstile-container" class="min-h-[65px] my-2"></div>
 
         <BrutalButton type="submit" :disabled="isSubmitting"
           bg-class="bg-black text-white shadow-primary w-full block text-center mt-2">

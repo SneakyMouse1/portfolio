@@ -121,6 +121,7 @@ JWT_SECRET=your_jwt_secret_here
 RESEND_API_KEY=your_resend_api_key_here
 
 # Cloudflare Turnstile
+VITE_TURNSTILE_SITE_KEY=your_turnstile_site_key_here
 TURNSTILE_SECRET_KEY=your_turnstile_secret_here
 ```
 
@@ -149,6 +150,7 @@ ADMIN_LOGIN
 ADMIN_PASSWORD
 JWT_SECRET
 RESEND_API_KEY
+VITE_TURNSTILE_SITE_KEY
 TURNSTILE_SECRET_KEY
 ```
 
